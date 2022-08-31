@@ -1,5 +1,11 @@
+import MainContainer from "./AppStyled";
+
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <MainContainer></MainContainer>
+    </div>
+  );
 }
 
 export default App;
