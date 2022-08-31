@@ -1,5 +1,6 @@
-import { Item, UserData, UserRepository } from "../types/UserRepository";
+import { Item, UserRepository } from "../types/UserRepository";
 import axios from "axios";
+import UserData from "../types/UserData";
 
 class Repository<T extends Item> implements UserRepository<T> {
   constructor(public apiUrl: string) {}

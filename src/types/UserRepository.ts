@@ -1,5 +1,8 @@
-interface UserRepository<T> {
-  register: (userData: T) => Promise<T>;
-}
+import UserData from "./UserData";
 
-export default UserRepository;
+export interface Item {
+  id: string;
+}
+export interface UserRepository<T extends Item> {
+  registration: (userData: UserData) => Promise<T>;
+}
