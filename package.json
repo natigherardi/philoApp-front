@@ -48,7 +48,9 @@
     ]
   },
   "devDependencies": {
-    "husky": "^8.0.1"
+    "@types/styled-components": "^5.1.26",
+    "husky": "^8.0.1",
+    "lato-font": "^3.0.0"
   },
   "jest": {
     "collectCoverageFrom": [
