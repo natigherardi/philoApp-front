@@ -1,9 +1,12 @@
 import MainContainer from "./AppStyled";
+import FormUser from "./components/FormUser/FormUser";
 
 function App() {
   return (
     <div>
-      <MainContainer></MainContainer>
+      <MainContainer>
+        <FormUser />
+      </MainContainer>
     </div>
   );
 }
