@@ -18,6 +18,7 @@ const FormContainer = styled.div`
     }
     &__label {
       font-size: ${docStyle.fontSize.small};
+      font-weight: 300;
     }
   }
 `;
