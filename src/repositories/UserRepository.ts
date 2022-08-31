@@ -1,8 +1,8 @@
-import { Item, UserRepository } from "../types/UserRepository";
+import { Item, IUserRepository } from "../types/IUserRepository";
 import axios from "axios";
 import UserData from "../types/UserData";
 
-class Repository<T extends Item> implements UserRepository<T> {
+class UserRepository<T extends Item> implements IUserRepository<T> {
   constructor(public apiUrl: string) {}
 
   registration = async (userData: UserData) => {
@@ -18,4 +18,4 @@ class Repository<T extends Item> implements UserRepository<T> {
   };
 }
 
-export default Repository;
+export default UserRepository;
