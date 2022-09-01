@@ -1,11 +1,14 @@
 import MainContainer from "./AppStyled";
-import FormUser from "./components/FormUser/FormUser";
+import { Routes, Route } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 function App() {
   return (
     <div>
       <MainContainer>
-        <FormUser />
+        <Routes>
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
       </MainContainer>
     </div>
   );

@@ -62,7 +62,7 @@ const FormUser = (): JSX.Element => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Register</button>
       </form>
     </FormContainer>
   );

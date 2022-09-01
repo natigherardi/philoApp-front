@@ -4,7 +4,7 @@ const docStyle = {
   },
   colors: {
     primaryColor: "#FFFFFF",
-    secondaryColor: "#D1D1D1",
+    secondaryColor: "#D0D1D1",
     contrastColor: "#A23B72",
     contrastColorLighter: "#D475A8",
     TypographyColor: "#1F1F1F",
@@ -15,13 +15,23 @@ const docStyle = {
     medium: "32px",
     small: "24px",
   },
+  fontWeight: {
+    light: "300",
+    bold: "400",
+  },
   borderRadius: {
     large: "50px",
     medium: "16px",
   },
   padding: {
-    large: "20px",
+    large: "30px",
     medium: "20px",
+    small: "10px",
+  },
+  margin: {
+    large: "30px",
+    medium: "20px",
+    small: "10px",
   },
 };
 
