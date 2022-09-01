@@ -33,6 +33,11 @@ const docStyle = {
     medium: "20px",
     small: "10px",
   },
+  mediaBreakpoint: {
+    small: "480px",
+    medium: "650px",
+    big: "1150px",
+  },
 };
 
 export default docStyle;
