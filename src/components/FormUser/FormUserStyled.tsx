@@ -9,7 +9,6 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font-weight: 300;
     &__input {
       height: 60px;
       border-radius: ${docStyle.borderRadius.medium};
@@ -18,6 +17,7 @@ const FormContainer = styled.div`
       border: 20px black;
       font-size: ${docStyle.fontSize.small};
       font-family: inherit;
+      font-weight: 300;
     }
     &__label {
       font-size: ${docStyle.fontSize.small};

@@ -3,6 +3,9 @@ import FormContainer from "./FormUserStyled";
 import UserRepository from "../../repositories/UserRepository";
 
 const FormUser = (): JSX.Element => {
+  const apiUrl = process.env.REACT_APP_API_URL as string;
+  const userRepository = new UserRepository(apiUrl);
+
   const [userData, setUserData] = useState({
     name: "",
     username: "",
@@ -15,7 +18,7 @@ const FormUser = (): JSX.Element => {
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    UserRepository.registration(userData);
+    userRepository.registration(userData);
   };
 
   return (

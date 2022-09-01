@@ -2,8 +2,9 @@ import axios from "axios";
 import UserRepository from "./UserRepository";
 
 describe("Given a UserRepository class", () => {
+  const url = "";
+  const userRepository = new UserRepository(url);
   describe("When we have an instance", () => {
-    const userRepository = new UserRepository();
     test("Then it should exist", () => {
       expect(userRepository).toBeTruthy();
     });
@@ -13,7 +14,7 @@ describe("Given a UserRepository class", () => {
       test("Then if the API returns an OK response, the method should return the data of the response", async () => {
         axios.post = jest.fn().mockResolvedValue({ data: userData });
 
-        const returnedValue = await UserRepository.registration(userData);
+        const returnedValue = await userRepository.registration(userData);
 
         expect(returnedValue).toStrictEqual(userData);
       });
@@ -22,7 +23,7 @@ describe("Given a UserRepository class", () => {
         const error = {};
         axios.post = jest.fn().mockRejectedValue(error);
 
-        const returnedValue = await UserRepository.registration(userData);
+        const returnedValue = await userRepository.registration(userData);
 
         expect(returnedValue).toStrictEqual(error);
       });
