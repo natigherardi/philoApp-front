@@ -1,11 +1,13 @@
 import MainContainer from "./AppStyled";
-import FormUser from "./components/FormUser/FormUser";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
       <MainContainer>
-        <FormUser />
+        <Routes>
+          <Route path="/register" />
+        </Routes>
       </MainContainer>
     </div>
   );
