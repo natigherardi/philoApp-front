@@ -9,16 +9,18 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
+    font-weight: 300;
     &__input {
       height: 60px;
       border-radius: ${docStyle.borderRadius.medium};
       margin-bottom: 10px;
       box-shadow: 0px 3px 8px grey;
       border: 20px black;
+      font-size: ${docStyle.fontSize.small};
+      font-family: inherit;
     }
     &__label {
       font-size: ${docStyle.fontSize.small};
-      font-weight: 300;
     }
   }
 `;

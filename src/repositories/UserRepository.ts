@@ -1,14 +1,13 @@
-import { Item, IUserRepository } from "../types/IUserRepository";
+import { IUserRepository } from "../types/IUserRepository";
 import axios from "axios";
 import UserData from "../types/UserData";
 
-class UserRepository<T extends Item> implements IUserRepository<T> {
-  constructor(public apiUrl: string) {}
-
-  registration = async (userData: UserData) => {
+class UserRepository implements IUserRepository {
+  apiUrl = process.env.REACT_APP_API_URL as string;
+  public static registration = async (userData: UserData) => {
     try {
       const { data: responseUserData } = await axios.post(
-        `${this.apiUrl}/user/register`,
+        `${UserRepository.prototype.apiUrl}/user/register`,
         userData
       );
       return responseUserData;
