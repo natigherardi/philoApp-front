@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import FormContainer from "./FormUserStyled";
+import UserRepository from "../../repositories/UserRepository";
 
 const FormUser = (): JSX.Element => {
   const [userData, setUserData] = useState({
@@ -12,9 +13,14 @@ const FormUser = (): JSX.Element => {
     setUserData({ ...userData, [event.target.id]: event.target.value });
   };
 
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    UserRepository.registration(userData);
+  };
+
   return (
     <FormContainer>
-      <form>
+      <form onSubmit={handleSubmit} data-testid="form-register">
         <div className="form">
           <label htmlFor="name" className="form__label">
             Name
