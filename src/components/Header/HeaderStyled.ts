@@ -7,7 +7,8 @@ const HeaderStyled = styled.div`
   .header {
     &__image {
       @media (min-width: ${docStyle.mediaBreakpoint.small}) {
-        width: 260px;
+        width: 312px;
+        height: 120px;
       }
       @media (min-width: ${docStyle.mediaBreakpoint.medium}) {
         width: 400px;
