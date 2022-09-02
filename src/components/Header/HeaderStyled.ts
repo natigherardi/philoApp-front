@@ -6,7 +6,17 @@ const HeaderStyled = styled.div`
   margin: ${docStyle.margin.small};
   .header {
     &__image {
-      width: 70%;
+      @media (min-width: ${docStyle.mediaBreakpoint.small}) {
+        width: 260px;
+      }
+      @media (min-width: ${docStyle.mediaBreakpoint.medium}) {
+        width: 400px;
+        height: 150px;
+      }
+      @media (min-width: ${docStyle.mediaBreakpoint.big}) {
+        width: 550px;
+        height: 210px;
+      }
     }
   }
 `;
