@@ -7,6 +7,7 @@ function App() {
     <div>
       <MainContainer>
         <Routes>
+          <Route path="/*" element={<RegisterPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </MainContainer>
