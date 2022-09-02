@@ -6,8 +6,8 @@ const Header = (): JSX.Element => {
       <img
         src="/images/HeaderImage.png"
         alt="philoApp-logo"
-        height="100"
-        width="260"
+        height="150"
+        width="400"
         className="header__image"
       />
     </HeaderStyled>
