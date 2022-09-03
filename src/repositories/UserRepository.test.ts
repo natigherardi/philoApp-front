@@ -37,9 +37,7 @@ describe("Given a UserRepository class", () => {
         data: { user: { token: string } };
       }
       test("Then if the API returns an OK response the method should return the user data from the request", async () => {
-        const userRepository = new UserRepository(
-          `https://ngherardi-final-project-202207.herokuapp.com`
-        );
+        const userRepository = new UserRepository(url);
         const userData = { username: "testLogin", password: "123" };
         const expectedResponse = { data: { user: { token: "mocked token" } } };
 
@@ -52,9 +50,7 @@ describe("Given a UserRepository class", () => {
       });
 
       test("And then if the API returns an error, the method should return it", async () => {
-        const userRepository = new UserRepository(
-          `https://ngherardi-final-project-202207.herokuapp.com`
-        );
+        const userRepository = new UserRepository(url);
         const userData = { username: "", password: "123" };
         const expectedResponse = "error";
 
