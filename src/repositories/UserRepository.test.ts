@@ -19,7 +19,7 @@ describe("Given a UserRepository class", () => {
         expect(returnedValue).toStrictEqual(userData);
       });
 
-      test("And then if the API returns an error, the method should return an error", async () => {
+      test.only("And then if the API returns an error, the method should return an error", async () => {
         const error = {};
         axios.post = jest.fn().mockRejectedValue(error);
 
