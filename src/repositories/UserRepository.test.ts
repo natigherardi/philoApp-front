@@ -33,6 +33,9 @@ describe("Given a UserRepository class", () => {
     });
 
     describe("And when the login method is called", () => {
+      interface ResponseMocked {
+        data: { user: { token: string } };
+      }
       test("Then if the API returns an OK response the method should return the user data from the request", async () => {
         const userRepository = new UserRepository(
           `https://ngherardi-final-project-202207.herokuapp.com`
@@ -42,7 +45,9 @@ describe("Given a UserRepository class", () => {
 
         const response = await userRepository.login(userData);
         await waitFor(async () => {
-          await expect(response.data).toStrictEqual(expectedResponse);
+          await expect((response as ResponseMocked).data).toStrictEqual(
+            expectedResponse
+          );
         });
       });
 
@@ -55,7 +60,9 @@ describe("Given a UserRepository class", () => {
 
         const response = await userRepository.login(userData);
         await waitFor(async () => {
-          await expect(response.data).toStrictEqual(expectedResponse);
+          await expect((response as ResponseMocked).data).toStrictEqual(
+            expectedResponse
+          );
         });
       });
     });
