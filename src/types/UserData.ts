@@ -9,3 +9,8 @@ export interface UserStore {
   password: string;
   id: string;
 }
+
+export interface UserLogin {
+  username: string;
+  password: string;
+}
