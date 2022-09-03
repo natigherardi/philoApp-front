@@ -2,22 +2,22 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import SessionInfo from "../../types/SessionInfo";
 import { UserStore } from "../../types/UserData";
 
-const userInitialState: SessionInfo = {
+const userSessionInitialState: SessionInfo = {
   userData: { id: "", name: "", password: "" },
   isLoggedIn: false,
 };
 
-const userSlice = createSlice({
+const userSessionSlice = createSlice({
   name: "users",
-  initialState: userInitialState,
+  initialState: userSessionInitialState,
   reducers: {
     loginUser: (
       _previusSessionInfo: SessionInfo,
       action: PayloadAction<UserStore>
-    ) => ({ isLoggedIn: true, userData: action.payload }),
+    ) => ({ isLoggedIn: true, userData: { ...action.payload } }),
   },
 });
 
-export const userReducer = userSlice.reducer;
+export const userSessionReducer = userSessionSlice.reducer;
 
-export const { loginUser: loginUserActionCreator } = userSlice.actions;
+export const { loginUser: loginUserActionCreator } = userSessionSlice.actions;
