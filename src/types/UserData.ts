@@ -4,4 +4,8 @@ export interface UserData {
   username: string;
 }
 
-export default UserData;
+export interface UserStore {
+  name: string;
+  password: string;
+  id: string;
+}
