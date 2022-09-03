@@ -15,9 +15,14 @@ const userSessionSlice = createSlice({
       _previusSessionInfo: SessionInfo,
       action: PayloadAction<UserStore>
     ) => ({ isLoggedIn: true, userData: { ...action.payload } }),
+    logoutUser: (_previusSessionInfo: SessionInfo, action) =>
+      userSessionInitialState,
   },
 });
 
 export const userSessionReducer = userSessionSlice.reducer;
 
-export const { loginUser: loginUserActionCreator } = userSessionSlice.actions;
+export const {
+  loginUser: loginUserActionCreator,
+  logoutUser: logoutUserActionCreator,
+} = userSessionSlice.actions;
