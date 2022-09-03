@@ -15,8 +15,7 @@ const userSessionSlice = createSlice({
       _previusSessionInfo: SessionInfo,
       action: PayloadAction<UserStore>
     ) => ({ isLoggedIn: true, userData: { ...action.payload } }),
-    logoutUser: (_previusSessionInfo: SessionInfo, action) =>
-      userSessionInitialState,
+    logoutUser: (_previusSessionInfo: SessionInfo) => userSessionInitialState,
   },
 });
 
