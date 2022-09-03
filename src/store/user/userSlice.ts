@@ -1,18 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import SessionInfo from "../../types/SessionInfo";
 import { UserStore } from "../../types/UserData";
 
-const userInitialState: UserStore = {
-  id: "",
-  name: "",
-  password: "",
+const userInitialState: SessionInfo = {
+  userData: { id: "", name: "", password: "" },
+  isLoggedIn: false,
 };
 
 const userSlice = createSlice({
   name: "users",
   initialState: userInitialState,
   reducers: {
-    loginUser: (previusUsers, action: PayloadAction<UserStore>) =>
-      action.payload,
+    loginUser: (
+      _previusSessionInfo: SessionInfo,
+      action: PayloadAction<UserStore>
+    ) => ({ isLoggedIn: true, userData: action.payload }),
   },
 });
 
