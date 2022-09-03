@@ -1,4 +1,5 @@
 import { waitFor } from "@testing-library/react";
+import { AxiosError } from "axios";
 import UserRepository from "./UserRepository";
 
 describe("Given a UserRepository class", () => {
@@ -52,13 +53,13 @@ describe("Given a UserRepository class", () => {
       test("And then if the API returns an error, the method should return it", async () => {
         const userRepository = new UserRepository(url);
         const userData = { username: "", password: "123" };
-        const expectedResponse = "error";
+        const expectedResponse = new AxiosError(
+          "Request failed with status code 400"
+        );
 
         const response = await userRepository.login(userData);
         await waitFor(async () => {
-          await expect((response as ResponseMocked).data).toStrictEqual(
-            expectedResponse
-          );
+          await expect(response).toStrictEqual(expectedResponse);
         });
       });
     });
