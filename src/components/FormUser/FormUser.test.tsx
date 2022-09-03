@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import FormUser from "./FormUser";
+import axios from "axios";
 
 describe("Given a User Form component", () => {
   describe("When rendered", () => {
@@ -48,6 +49,7 @@ describe("Given a User Form component", () => {
     render(<FormUser />);
     const form = screen.getByTestId("form-register");
     const mockSubmit = jest.fn();
+    axios.post = jest.fn();
     form.onsubmit = mockSubmit;
     const submitButton = screen.getByRole("button");
     await userEvent.click(submitButton);
