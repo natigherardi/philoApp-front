@@ -18,8 +18,11 @@ class UserRepository<T extends Item> implements IUserRepository<T> {
 
   login = async (userData: UserLogin) => {
     try {
-      const data = await axios.post(`${this.apiUrl}/user/login`, userData);
-      return data;
+      const { data: responseLogin } = await axios.post(
+        `${this.apiUrl}/user/login`,
+        userData
+      );
+      return responseLogin;
     } catch (error) {
       return error;
     }
