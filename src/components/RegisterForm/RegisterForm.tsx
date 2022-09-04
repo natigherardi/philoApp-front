@@ -1,8 +1,8 @@
 import { SyntheticEvent, useState } from "react";
-import FormContainer from "./FormUserStyled";
+import FormContainer from "./RegisterFormStyled";
 import UserRepository from "../../repositories/UserRepository";
 
-const FormUser = (): JSX.Element => {
+const RegisterForm = (): JSX.Element => {
   const apiUrl = process.env.REACT_APP_API_URL as string;
   const userRepository = new UserRepository(apiUrl);
 
@@ -68,4 +68,4 @@ const FormUser = (): JSX.Element => {
   );
 };
 
-export default FormUser;
+export default RegisterForm;

@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import FormUser from "./FormUser";
+import RegisterForm from "./RegisterForm";
 import axios from "axios";
 
 describe("Given a User Form component", () => {
   describe("When rendered", () => {
     test("Then it should show three labels", () => {
-      render(<FormUser />);
+      render(<RegisterForm />);
       const nameLabel = screen.getByText("Name");
       const usernameLabel = screen.getByText("Username");
       const passwordLabel = screen.getByText("Password");
@@ -17,7 +17,7 @@ describe("Given a User Form component", () => {
     });
 
     test("And then it should show three inputs", () => {
-      render(<FormUser />);
+      render(<RegisterForm />);
       const passwordInput = screen.getByLabelText("Password");
       const inputs = screen.getAllByRole("textbox");
 
@@ -28,9 +28,9 @@ describe("Given a User Form component", () => {
 
   describe("When the user types in each input", () => {
     test("Then each input should have the typed value", async () => {
-      render(<FormUser />);
+      render(<RegisterForm />);
       const expectedValue = "1";
-      render(<FormUser />);
+      render(<RegisterForm />);
       const passwordInput = screen.getByLabelText("Password");
       const usernameInput = screen.getByLabelText("Username");
       const nameInput = screen.getByLabelText("Name");
@@ -46,7 +46,7 @@ describe("Given a User Form component", () => {
   });
 
   test("Then, on submit, it should be submitted", async () => {
-    render(<FormUser />);
+    render(<RegisterForm />);
     const form = screen.getByTestId("form-register");
     const mockSubmit = jest.fn();
     axios.post = jest.fn();

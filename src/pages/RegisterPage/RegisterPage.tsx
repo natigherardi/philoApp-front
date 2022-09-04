@@ -1,4 +1,4 @@
-import FormUser from "../../components/FormUser/FormUser";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import Header from "../../components/Header/Header";
 import RegisterStyledPage from "./RegisterPageStyled";
 
@@ -12,7 +12,7 @@ const RegisterPage = (): JSX.Element => {
           Registration will allow you to create your own quotes and add your
           favourite ones to your lists
         </p>
-        <FormUser />
+        <RegisterForm />
       </RegisterStyledPage>
     </>
   );
