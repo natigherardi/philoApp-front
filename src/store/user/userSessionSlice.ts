@@ -12,9 +12,13 @@ const userSessionSlice = createSlice({
   initialState: userSessionInitialState,
   reducers: {
     loginUser: (
-      _previusSessionInfo: SessionInfo,
+      previusSessionInfo: SessionInfo,
       action: PayloadAction<UserStore>
-    ) => ({ isLoggedIn: true, userData: { ...action.payload } }),
+    ) => ({
+      ...previusSessionInfo,
+      isLoggedIn: true,
+      userData: { ...action.payload },
+    }),
     logoutUser: (_previusSessionInfo: SessionInfo) => userSessionInitialState,
   },
 });
