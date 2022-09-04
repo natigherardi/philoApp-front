@@ -1,16 +1,21 @@
 import { useDispatch } from "react-redux";
 import UserRepository from "../repositories/UserRepository";
+import { useAppDispatch } from "../store/hooks";
 import { loginUserActionCreator } from "../store/user/userSessionSlice";
-import { UserData, UserLogin } from "../types/UserData";
+import { UserLogin } from "../types/UserData";
+import tokenDecoder from "../utils/tokenDecoder";
 
 export const useUserSession = () => {
   const url = process.env.REACT_APP_API_URL as string;
   const userRepository = new UserRepository(url);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const loginUser = async (userData: UserLogin) => {
-    const { data: userWithToken } = await userRepository.login(userData);
-    dispatch(loginUserActionCreator(userWithToken));
+    const {
+      user: { token },
+    } = await userRepository.login(userData);
+    const userLogged = tokenDecoder(token);
+    dispatch(loginUserActionCreator(userLogged));
   };
   return loginUser;
 };

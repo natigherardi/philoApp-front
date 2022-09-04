@@ -5,8 +5,8 @@ export interface UserData {
 }
 
 export interface UserStore {
-  name: string;
-  password: string;
+  username: string;
+  token: string;
   id: string;
 }
 

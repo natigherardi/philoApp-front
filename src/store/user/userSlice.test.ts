@@ -7,16 +7,16 @@ import {
 describe("Given a user reducer", () => {
   const emptySessionInfo = {
     isLoggedIn: false,
-    userData: { id: "", name: "", password: "" },
+    userData: { username: "", token: "", id: "" },
   };
 
   const loggedUserSessionInfo = {
     isLoggedIn: true,
-    userData: { id: "#", name: "#", password: "#" },
+    userData: { token: "#", id: "#", username: "#" },
   };
   describe("When it is called with a loginUser action", () => {
     test("Then it should return a new session info with isLoggedIn and the user info received", () => {
-      const newUserLogged = { id: "#", name: "#", password: "#" };
+      const newUserLogged = { username: "#", token: "#", id: "#" };
 
       const newSessionInfo = userSessionReducer(
         emptySessionInfo,
