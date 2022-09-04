@@ -5,12 +5,18 @@ export interface UserData {
 }
 
 export interface UserStore {
-  name: string;
-  password: string;
+  username: string;
+  token: string;
   id: string;
 }
 
 export interface UserLogin {
   username: string;
   password: string;
+}
+
+export interface UserLoggedWithToken {
+  username: string;
+  token: string;
+  name: string;
 }

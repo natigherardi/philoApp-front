@@ -1,4 +1,4 @@
 export default interface SessionInfo {
-  userData: { id: string; name: string; password: string };
+  userData: { id: string; username: string; token: string };
   isLoggedIn: boolean;
 }

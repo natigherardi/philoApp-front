@@ -40,7 +40,7 @@ describe("Given a UserRepository class", () => {
       test("Then if the API returns an OK response the method should return the user data from the request", async () => {
         const userRepository = new UserRepository(url);
         const userData = { username: "testLogin", password: "123" };
-        const expectedResponse = { data: { user: { token: "mocked token" } } };
+        const expectedResponse = { user: { token: "mocked token" } };
 
         const response = await userRepository.login(userData);
         await waitFor(async () => {

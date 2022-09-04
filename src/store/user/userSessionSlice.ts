@@ -3,7 +3,7 @@ import SessionInfo from "../../types/SessionInfo";
 import { UserStore } from "../../types/UserData";
 
 const userSessionInitialState: SessionInfo = {
-  userData: { id: "", name: "", password: "" },
+  userData: { id: "", username: "", token: "" },
   isLoggedIn: false,
 };
 
