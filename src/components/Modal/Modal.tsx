@@ -17,7 +17,7 @@ const Modal = (): JSX.Element => {
   if (isOpen) {
     setTimeout(() => {
       dispatch(closeModalActionCreator());
-    }, 5100000);
+    }, 5000);
   }
 
   const handleClose = () => {
