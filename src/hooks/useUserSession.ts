@@ -3,7 +3,7 @@ import { useAppDispatch } from "../store/hooks";
 import { openModalActionCreator } from "../store/ui/uiSlice";
 import { loginUserActionCreator } from "../store/user/userSessionSlice";
 import { Modal } from "../types/UiData";
-import { UserLogin } from "../types/UserData";
+import { UserData, UserLogin } from "../types/UserData";
 import tokenDecoder from "../utils/tokenDecoder";
 
 export const useUserSession = () => {
@@ -26,9 +26,27 @@ export const useUserSession = () => {
       dispatch(loginUserActionCreator(userLogged));
       localStorage.setItem("token", token);
     } catch (error) {
-      modal = { isError: true, message: "Login failed", isOpen: true };
+      modal = { ...modal, isError: true, message: "Login failed" };
     }
     dispatch(openModalActionCreator(modal));
   };
-  return loginUser;
+
+  const registerUser = async (userData: UserData) => {
+    let modal: Modal = {
+      isError: false,
+      isOpen: true,
+      message: "Registration correct",
+    };
+    try {
+      const registrationResult = await userRepository.registration(userData);
+      if (registrationResult.name) {
+        throw new Error("");
+      }
+    } catch (error) {
+      modal = { ...modal, isError: true, message: "Registration failed" };
+    }
+    dispatch(openModalActionCreator(modal));
+  };
+
+  return { loginUser, registerUser };
 };
