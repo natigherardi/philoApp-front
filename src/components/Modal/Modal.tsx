@@ -1,10 +1,13 @@
 import ModalStyled from "./ModalStyled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = (): JSX.Element => {
   return (
     <ModalStyled>
-      <i className="modal__close"></i>
-      <span className="modal__title">Success</span>
+      <FontAwesomeIcon icon={faX} className="modal__close-icon" />
+      <span className="modal__title">Success ✓</span>
+
       <i></i>
       <span className="modal__description">
         lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum

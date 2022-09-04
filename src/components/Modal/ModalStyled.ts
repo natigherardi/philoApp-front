@@ -28,9 +28,18 @@ const ModalStyled = styled.div`
   .modal {
     &__title {
       color: ${docStyle.colors.contrastColor};
+      word-spacing: 0.5em;
     }
     &__description {
       font-size: 0.7em;
+    }
+    &__close-icon {
+      color: ${docStyle.colors.contrastColor};
+      position: absolute;
+      height: 0.7em;
+      top: 0;
+      right: 0;
+      margin: ${docStyle.margin.medium};
     }
   }
 `;
