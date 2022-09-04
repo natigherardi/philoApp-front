@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import axios from "axios";
 import { Provider } from "react-redux";
+import UserRepository from "../repositories/UserRepository";
 import { store } from "../store/store";
 import { openModalActionCreator } from "../store/ui/uiSlice";
 import { useUserSession } from "./useUserSession";
@@ -26,40 +27,95 @@ jest.mock("../utils/tokenDecoder", () => () => mockedTokenDecodification);
 
 const url = process.env.REACT_APP_API_URL as string;
 
-describe("When the login function returned is invoked with a user", () => {
+describe("Given the login function returned by the userSession hook", () => {
+  describe("When it is is invoked with a user", () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+    const userWithToken = { data: { user: { token: "mockToken" } } };
+    const user = { username: "", password: "" };
+
+    test("Then it should call the repository method loginUser with the data received", async () => {
+      const post = jest.fn().mockResolvedValue(userWithToken);
+      axios.post = post;
+      const {
+        result: {
+          current: { loginUser },
+        },
+      } = renderHook(() => useUserSession(), { wrapper: Wrapper });
+
+      await loginUser(user);
+
+      expect(post).toHaveBeenCalledWith(`${url}/user/login`, user);
+    });
+
+    test("And then if the loginUser method throws an erorr, then the dispatch method should be called to open the modal of error", async () => {
+      const expectedAction = openModalActionCreator({
+        isError: true,
+        message: "Login failed",
+        isOpen: true,
+      });
+      const post = jest.fn().mockRejectedValue("error");
+      axios.post = post;
+
+      const {
+        result: {
+          current: { loginUser },
+        },
+      } = renderHook(() => useUserSession(), { wrapper: Wrapper });
+
+      await loginUser(user);
+
+      expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+});
+
+describe("Given the reigster function returned by the userSession hook is invoked with a user", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  const userWithToken = { data: { user: { token: "mockToken" } } };
-  const user = { username: "", password: "" };
+  describe("When it is invoked with a user", () => {
+    const userData = { username: "", password: "", name: "" };
+    test("Then it should call the repository method registerUser with the data received and the dispatch to show success modal", async () => {
+      const post = jest.fn().mockResolvedValue({ data: "user created" });
+      axios.post = post;
+      const expectedAction = openModalActionCreator({
+        isError: false,
+        isOpen: true,
+        message: "Registration correct",
+      });
+      const {
+        result: {
+          current: { registerUser },
+        },
+      } = renderHook(() => useUserSession(), { wrapper: Wrapper });
 
-  test("Then it should call the repository method loginUser with the data received", async () => {
-    const post = jest.fn().mockResolvedValue(userWithToken);
-    axios.post = post;
-    const {
-      result: { current: loginUser },
-    } = renderHook(() => useUserSession(), { wrapper: Wrapper });
+      await registerUser(userData);
 
-    await loginUser(user);
-
-    expect(post).toHaveBeenCalledWith(`${url}/user/login`, user);
-  });
-
-  test("And then if the loginUser method throws an erorr, then the dispatch method should be called to open the modal of error", async () => {
-    const expectedAction = openModalActionCreator({
-      isError: true,
-      message: "Login failed",
-      isOpen: true,
+      expect(post).toHaveBeenCalledWith(`${url}/user/register`, userData);
+      expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
     });
-    const post = jest.fn().mockRejectedValue("error");
-    axios.post = post;
 
-    const {
-      result: { current: loginUser },
-    } = renderHook(() => useUserSession(), { wrapper: Wrapper });
+    test("An then if the registration returned an error it should call the dispatch with an action to show error modal", async () => {
+      const expectedAction = openModalActionCreator({
+        isError: true,
+        message: "Registration failed",
+        isOpen: true,
+      });
+      UserRepository.prototype.registration = jest.fn().mockRejectedValue("");
+      const post = jest.fn().mockRejectedValue(new Error());
+      axios.post = post;
 
-    await loginUser(user);
+      const {
+        result: {
+          current: { registerUser },
+        },
+      } = renderHook(() => useUserSession(), { wrapper: Wrapper });
 
-    expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
+      await registerUser(userData);
+
+      expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
+    });
   });
 });
