@@ -1,16 +1,14 @@
 import { SyntheticEvent, useState } from "react";
 import FormContainer from "./RegisterFormStyled";
-import UserRepository from "../../repositories/UserRepository";
+import { useUserSession } from "../../hooks/useUserSession";
 
 const RegisterForm = (): JSX.Element => {
-  const apiUrl = process.env.REACT_APP_API_URL as string;
-  const userRepository = new UserRepository(apiUrl);
-
   const [userData, setUserData] = useState({
     name: "",
     username: "",
     password: "",
   });
+  const { registerUser } = useUserSession();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, [event.target.id]: event.target.value });
@@ -18,7 +16,7 @@ const RegisterForm = (): JSX.Element => {
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    userRepository.registration(userData);
+    registerUser(userData);
   };
 
   return (
