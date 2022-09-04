@@ -4,7 +4,7 @@ import {
   userSessionReducer,
 } from "./userSessionSlice";
 
-describe("Given a user reducer", () => {
+describe("Given a userSession reducer", () => {
   const emptySessionInfo = {
     isLoggedIn: false,
     userData: { username: "", token: "", id: "" },
