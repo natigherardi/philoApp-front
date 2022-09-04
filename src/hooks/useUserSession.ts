@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import UserRepository from "../repositories/UserRepository";
 import { useAppDispatch } from "../store/hooks";
 import { openModalActionCreator } from "../store/ui/uiSlice";

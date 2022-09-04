@@ -3,7 +3,6 @@ import axios from "axios";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import { openModalActionCreator } from "../store/ui/uiSlice";
-import { loginUserActionCreator } from "../store/user/userSessionSlice";
 import { useUserSession } from "./useUserSession";
 
 const mockedDispatch = jest.fn();
@@ -31,10 +30,9 @@ describe("When the login function returned is invoked with a user", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-
-  //const loginUser = useUserSession();
   const userWithToken = { data: { user: { token: "mockToken" } } };
   const user = { username: "", password: "" };
+
   test("Then it should call the repository method loginUser with the data received", async () => {
     const post = jest.fn().mockResolvedValue(userWithToken);
     axios.post = post;
@@ -46,7 +44,8 @@ describe("When the login function returned is invoked with a user", () => {
 
     expect(post).toHaveBeenCalledWith(`${url}/user/login`, user);
   });
-  test("And then if the login method throws an erorr, then the dispatch method should be called to open the modal of error", async () => {
+
+  test("And then if the loginUser method throws an erorr, then the dispatch method should be called to open the modal of error", async () => {
     const expectedAction = openModalActionCreator({
       isError: true,
       message: "Login failed",
