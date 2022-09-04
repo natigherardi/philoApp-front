@@ -11,11 +11,19 @@ export const useUserSession = () => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userData: UserLogin) => {
-    const {
-      user: { token },
-    } = await userRepository.login(userData);
-    const userLogged = tokenDecoder(token);
-    dispatch(loginUserActionCreator(userLogged));
+    let modalError = { isError: false, message: "" };
+    try {
+      const {
+        user: { token },
+      } = await userRepository.login(userData);
+      const userLogged = tokenDecoder(token);
+      dispatch(loginUserActionCreator(userLogged));
+      localStorage.setItem("token", token);
+    } catch (error) {
+      modalError = { isError: true, message: "Error logging in" };
+      return modalError;
+    }
+    //dispatch UI modalError
   };
   return loginUser;
 };
