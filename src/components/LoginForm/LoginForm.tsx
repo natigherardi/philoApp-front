@@ -21,9 +21,9 @@ const LoginForm = (): JSX.Element => {
 
   return (
     <LoginFormContainer onSubmit={handleSubmit} data-testid="form-login">
-      <div className="form__fields">
-        <div className="form__field-group">
-          <label htmlFor="username" className="form__label">
+      <div className="login-form__fields">
+        <div className="login-form__field-group">
+          <label htmlFor="username" className="login-form__label">
             Username
           </label>
           <input
@@ -31,13 +31,13 @@ const LoginForm = (): JSX.Element => {
             id="username"
             required
             autoComplete="off"
-            className="form__input"
+            className="login-form__input"
             value={userData.username}
             onChange={handleChange}
           />
         </div>
-        <div className="form__field-group">
-          <label htmlFor="password" className="form__label">
+        <div className="login-form__field-group">
+          <label htmlFor="password" className="login-form__label">
             Password
           </label>
           <input
@@ -45,12 +45,12 @@ const LoginForm = (): JSX.Element => {
             id="password"
             required
             autoComplete="off"
-            className="form__input"
+            className="login-form__input"
             value={userData.password}
             onChange={handleChange}
           />
         </div>
-        <div className="form__field-group --button">
+        <div className="login-form__field-group --button">
           <LargeButton type="submit" text="Login"></LargeButton>
         </div>
       </div>

@@ -16,7 +16,7 @@ const LoginFormContainer = styled.form`
     flex-wrap: wrap;
     gap: 100px;
   }
-  .form {
+  .login-form {
     &__fields {
       display: flex;
 
