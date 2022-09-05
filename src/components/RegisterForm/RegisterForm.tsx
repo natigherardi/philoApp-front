@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import FormContainer from "./RegisterFormStyled";
 import { useUserSession } from "../../hooks/useUserSession";
+import LargeButton from "../LargeButton/LargeButton";
 
 const RegisterForm = (): JSX.Element => {
   const [userData, setUserData] = useState({
@@ -20,9 +21,9 @@ const RegisterForm = (): JSX.Element => {
   };
 
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit} data-testid="form-register">
-        <div className="form">
+    <FormContainer onSubmit={handleSubmit} data-testid="form-register">
+      <div className="form__fields">
+        <div className="form__field-group">
           <label htmlFor="name" className="form__label">
             Name
           </label>
@@ -35,6 +36,8 @@ const RegisterForm = (): JSX.Element => {
             value={userData.name}
             onChange={handleChange}
           />
+        </div>
+        <div className="form__field-group">
           <label htmlFor="username" className="form__label">
             Username
           </label>
@@ -47,6 +50,8 @@ const RegisterForm = (): JSX.Element => {
             value={userData.username}
             onChange={handleChange}
           />
+        </div>
+        <div className="form__field-group">
           <label htmlFor="password" className="form__label">
             Password
           </label>
@@ -60,8 +65,10 @@ const RegisterForm = (): JSX.Element => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Register</button>
-      </form>
+        <div className="form__field-group --button">
+          <LargeButton actionOnClick={() => {}} text="Register"></LargeButton>
+        </div>
+      </div>
     </FormContainer>
   );
 };
