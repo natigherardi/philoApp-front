@@ -1,8 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "../../store/store";
 import { closeModalActionCreator } from "../../store/ui/uiSlice";
-import WrapperProps from "../../types/Wrapper";
+import Wrapper from "../../testUtils/Wrapper";
 import Modal from "./Modal";
 
 let mockedUseSelector = {};
@@ -12,10 +10,6 @@ jest.mock("react-redux", () => ({
   useSelector: () => mockedUseSelector,
   useDispatch: () => mockedDispatch,
 }));
-
-const Wrapper = ({ children }: WrapperProps): JSX.Element => {
-  return <Provider store={store}>{children}</Provider>;
-};
 
 describe("Given a modal", () => {
   afterEach(() => {
