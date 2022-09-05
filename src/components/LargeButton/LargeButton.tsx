@@ -2,7 +2,8 @@ import LargeButtonStyled from "./LargeButtonStyled";
 
 interface LargeButtonProps {
   text: string;
-  actionOnClick: () => void;
+  actionOnClick?: () => void;
+  type: string;
 }
 
 const LargeButton = ({
