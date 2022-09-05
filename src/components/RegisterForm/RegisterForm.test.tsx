@@ -2,13 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RegisterForm from "./RegisterForm";
 import axios from "axios";
-import { Provider } from "react-redux";
-import { store } from "../../store/store";
-import WrapperProps from "../../types/Wrapper";
-
-const Wrapper = ({ children }: WrapperProps) => {
-  return <Provider store={store}>{children}</Provider>;
-};
+import Wrapper from "../../testUtils/Wrapper";
 
 describe("Given a Register Form component", () => {
   describe("When rendered", () => {

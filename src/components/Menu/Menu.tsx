@@ -1,0 +1,14 @@
+import { slide as BurgerMenu } from "react-burger-menu";
+import { NavLink } from "react-router-dom";
+import "./menu.css";
+
+const Menu = (): JSX.Element => {
+  return (
+    <BurgerMenu right noOverlay>
+      <NavLink to={"/register"}>Register</NavLink>
+      <NavLink to={"/login"}>Log In</NavLink>
+    </BurgerMenu>
+  );
+};
+
+export default Menu;

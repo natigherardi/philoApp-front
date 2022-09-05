@@ -1,14 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
-import { Provider } from "react-redux";
-import { store } from "../../store/store";
-import WrapperProps from "../../types/Wrapper";
+import Wrapper from "../../testUtils/Wrapper";
 import LoginForm from "./LoginForm";
-
-const Wrapper = ({ children }: WrapperProps) => {
-  return <Provider store={store}>{children}</Provider>;
-};
 
 describe("Given a Login Form component", () => {
   describe("When rendered", () => {

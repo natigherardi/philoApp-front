@@ -1,3 +1,4 @@
+import Menu from "../Menu/Menu";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
@@ -10,6 +11,7 @@ const Header = (): JSX.Element => {
         width="400"
         className="header__image"
       />
+      <Menu />
     </HeaderStyled>
   );
 };

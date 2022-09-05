@@ -1,12 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "../../store/store";
-import WrapperProps from "../../types/Wrapper";
+import Wrapper from "../../testUtils/Wrapper";
 import RegisterPage from "./RegisterPage";
-
-const Wrapper = ({ children }: WrapperProps) => {
-  return <Provider store={store}>{children}</Provider>;
-};
 
 describe("Given a register page", () => {
   describe("When rendered", () => {

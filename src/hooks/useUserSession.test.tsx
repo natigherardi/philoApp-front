@@ -1,9 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import axios from "axios";
-import { Provider } from "react-redux";
 import UserRepository from "../repositories/UserRepository";
-import { store } from "../store/store";
 import { openModalActionCreator } from "../store/ui/uiSlice";
+import Wrapper from "../testUtils/Wrapper";
 import { useUserSession } from "./useUserSession";
 
 const mockedDispatch = jest.fn();
@@ -12,14 +11,6 @@ jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockedDispatch,
 }));
-
-interface WrapperProps {
-  children: JSX.Element | JSX.Element[];
-}
-
-const Wrapper = ({ children }: WrapperProps): JSX.Element => {
-  return <Provider store={store}>{children}</Provider>;
-};
 
 const mockedTokenDecodification = { username: "", id: "", token: "" };
 
