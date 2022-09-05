@@ -68,7 +68,7 @@ const FormContainer = styled.form`
     }
     @media (min-width: ${docStyle.mediaBreakpoint.big}) {
       justify-content: flex-end;
-      padding-right: 22px;
+      padding-right: 36px;
     }
   }
 `;

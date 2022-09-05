@@ -66,7 +66,7 @@ const RegisterForm = (): JSX.Element => {
           />
         </div>
         <div className="form__field-group --button">
-          <LargeButton></LargeButton>
+          <LargeButton actionOnClick={() => {}} text="Register"></LargeButton>
         </div>
       </div>
     </FormContainer>
