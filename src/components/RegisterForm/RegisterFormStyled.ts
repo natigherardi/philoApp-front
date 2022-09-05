@@ -22,6 +22,7 @@ const FormContainer = styled.form`
 
       @media (min-width: ${docStyle.mediaBreakpoint.small}) {
         flex-direction: column;
+        gap: 30px;
       }
       @media (min-width: ${docStyle.mediaBreakpoint.big}) {
         flex-direction: row;
@@ -32,6 +33,7 @@ const FormContainer = styled.form`
       display: flex;
       @media (min-width: ${docStyle.mediaBreakpoint.small}) {
         flex-direction: column;
+        gap: 10px;
       }
       @media (min-width: ${docStyle.mediaBreakpoint.big}) {
         flex-direction: row;
@@ -61,7 +63,13 @@ const FormContainer = styled.form`
     }
   }
   .--button {
-    justify-content: flex-end;
+    @media (min-width: ${docStyle.mediaBreakpoint.small}) {
+      align-self: center;
+    }
+    @media (min-width: ${docStyle.mediaBreakpoint.big}) {
+      justify-content: flex-end;
+      padding-right: 22px;
+    }
   }
 `;
 
