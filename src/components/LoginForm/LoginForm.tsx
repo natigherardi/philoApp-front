@@ -1,15 +1,14 @@
 import { SyntheticEvent, useState } from "react";
-import FormContainer from "./RegisterFormStyled";
 import { useUserSession } from "../../hooks/useUserSession";
 import LargeButton from "../LargeButton/LargeButton";
+import LoginFormContainer from "./LoginFormStyled";
 
-const RegisterForm = (): JSX.Element => {
+const LoginForm = (): JSX.Element => {
   const [userData, setUserData] = useState({
-    name: "",
     username: "",
     password: "",
   });
-  const { registerUser } = useUserSession();
+  const { loginUser } = useUserSession();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, [event.target.id]: event.target.value });
@@ -17,26 +16,12 @@ const RegisterForm = (): JSX.Element => {
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    registerUser(userData);
+    loginUser(userData);
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit} data-testid="form-register">
+    <LoginFormContainer onSubmit={handleSubmit} data-testid="form-register">
       <div className="form__fields">
-        <div className="form__field-group">
-          <label htmlFor="name" className="form__label">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            required
-            autoComplete="off"
-            className="form__input"
-            value={userData.name}
-            onChange={handleChange}
-          />
-        </div>
         <div className="form__field-group">
           <label htmlFor="username" className="form__label">
             Username
@@ -66,11 +51,11 @@ const RegisterForm = (): JSX.Element => {
           />
         </div>
         <div className="form__field-group --button">
-          <LargeButton type="submit" text="Register"></LargeButton>
+          <LargeButton type="submit" text="Login"></LargeButton>
         </div>
       </div>
-    </FormContainer>
+    </LoginFormContainer>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
