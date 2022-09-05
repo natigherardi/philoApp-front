@@ -1,28 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import RegisterForm from "./RegisterForm";
 import axios from "axios";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
 import WrapperProps from "../../types/Wrapper";
+import LoginForm from "./LoginForm";
 
 const Wrapper = ({ children }: WrapperProps) => {
   return <Provider store={store}>{children}</Provider>;
 };
 
-describe("Given a Register Form component", () => {
+describe("Given a Login Form component", () => {
   describe("When rendered", () => {
-    test("Then it should show three labels", () => {
+    test("Then it should show two labels", () => {
       render(
         <Wrapper>
-          <RegisterForm />
+          <LoginForm />
         </Wrapper>
       );
-      const nameLabel = screen.getByText("Name");
       const usernameLabel = screen.getByText("Username");
       const passwordLabel = screen.getByText("Password");
 
-      expect(nameLabel).toBeInTheDocument();
       expect(usernameLabel).toBeInTheDocument();
       expect(passwordLabel).toBeInTheDocument();
     });
@@ -30,14 +28,14 @@ describe("Given a Register Form component", () => {
     test("And then it should show three inputs", () => {
       render(
         <Wrapper>
-          <RegisterForm />
+          <LoginForm />
         </Wrapper>
       );
       const passwordInput = screen.getByLabelText("Password");
-      const inputs = screen.getAllByRole("textbox");
+      const input = screen.getByRole("textbox");
 
       expect(passwordInput).toBeInTheDocument();
-      expect(inputs).toHaveLength(2);
+      expect(input).toBeInTheDocument();
     });
   });
 
@@ -46,30 +44,27 @@ describe("Given a Register Form component", () => {
       const expectedValue = "1";
       render(
         <Wrapper>
-          <RegisterForm />
+          <LoginForm />
         </Wrapper>
       );
       const passwordInput = screen.getByLabelText("Password");
       const usernameInput = screen.getByLabelText("Username");
-      const nameInput = screen.getByLabelText("Name");
 
       await userEvent.type(passwordInput, expectedValue);
       await userEvent.type(usernameInput, expectedValue);
-      await userEvent.type(nameInput, expectedValue);
 
       await expect(passwordInput).toHaveValue(expectedValue);
       await expect(usernameInput).toHaveValue(expectedValue);
-      await expect(nameInput).toHaveValue(expectedValue);
     });
   });
 
   test("Then, on submit, it should be submitted", async () => {
     render(
       <Wrapper>
-        <RegisterForm />
+        <LoginForm />
       </Wrapper>
     );
-    const form = screen.getByTestId("form-register");
+    const form = screen.getByTestId("form-login");
     const mockSubmit = jest.fn();
     axios.post = jest.fn();
     form.onsubmit = mockSubmit;

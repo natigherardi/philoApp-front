@@ -20,7 +20,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <LoginFormContainer onSubmit={handleSubmit} data-testid="form-register">
+    <LoginFormContainer onSubmit={handleSubmit} data-testid="form-login">
       <div className="form__fields">
         <div className="form__field-group">
           <label htmlFor="username" className="form__label">
