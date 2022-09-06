@@ -34,7 +34,7 @@ const docStyle = {
     small: "10px",
   },
   mediaBreakpoint: {
-    small: "480px",
+    small: "390px",
     big: "1100px",
   },
 };

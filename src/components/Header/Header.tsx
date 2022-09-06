@@ -7,11 +7,13 @@ const Header = (): JSX.Element => {
       <img
         src="/images/HeaderImage.png"
         alt="philoApp-logo"
-        height="150"
-        width="400"
+        height="96"
+        width="242"
         className="header__image"
       />
-      <Menu />
+      <div className="header__menu-container">
+        <Menu />
+      </div>
     </HeaderStyled>
   );
 };

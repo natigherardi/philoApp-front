@@ -16,12 +16,14 @@ const LoginPageStyled = styled.section`
     &__form-container {
       background-color: ${docStyle.colors.primaryColor};
       border-radius: ${docStyle.borderRadius.medium};
-      @media (max-width: ${docStyle.mediaBreakpoint.big}) {
+      @media (min-width: ${docStyle.mediaBreakpoint.small}) {
         display: flex;
         flex-direction: column;
         padding: 30px;
         gap: 10px;
         align-items: center;
+        gap: 30px;
+        padding-bottom: 30px;
       }
     }
 
@@ -43,8 +45,8 @@ const LoginPageStyled = styled.section`
         height: 180px;
         width: 300px;
         position: absolute;
-        right: 120px;
-        bottom: 262px;
+        right: 216px;
+        bottom: 365px;
       }
     }
 

@@ -2,15 +2,22 @@ import MainContainer from "./AppStyled";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import { useAppSelector } from "./store/hooks";
+import LoadingModal from "./components/LoadingModal/LoadingModal";
 
 function App() {
+  const isLoading = useAppSelector((state) => state.ui.isLoading);
+
   return (
     <MainContainer>
-      <Routes>
-        <Route path="/" element={<Navigate to={"/register"} />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
+      {isLoading && <LoadingModal />}
+      {!isLoading && (
+        <Routes>
+          <Route path="/" element={<Navigate to={"/register"} />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      )}
     </MainContainer>
   );
 }
