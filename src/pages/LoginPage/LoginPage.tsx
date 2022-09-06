@@ -2,13 +2,9 @@ import { NavLink } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Modal from "../../components/Modal/Modal";
-import { useAppDispatch } from "../../store/hooks";
-import { toggleLoadingModalActionCreator } from "../../store/ui/uiSlice";
 import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-  dispatch(toggleLoadingModalActionCreator());
   return (
     <>
       <Header />
