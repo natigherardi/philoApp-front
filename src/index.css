@@ -1,7 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
 body {
-  margin: auto 0;
   font-family: "lato", sans-serif;
   font-weight: 300;
   color: style;
-  box-sizing: border-box;
 }

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import docStyle from "../../style/style";
 
 const LoginFormContainer = styled.form`
-  padding: ${docStyle.padding.large};
   background-color: ${docStyle.colors.primaryColor};
   border-radius: ${docStyle.borderRadius.medium};
   display: flex;
