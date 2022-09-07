@@ -1,5 +1,5 @@
 import { Item } from "./IUserRepository";
 
 export interface IQuotesRepository<T extends Item> {
-  getAllQuotes: () => Promise<T>;
+  getAllQuotes: () => Promise<T[]>;
 }

@@ -17,10 +17,11 @@ describe("Given a UserRepository class", () => {
       test("Then if the API returns an OK response, the method should return the data of the response", async () => {
         const userData = { name: "", username: "test", password: "" };
         const userRepository = new UserRepository(url);
+        const expectedResponse = "register success";
 
         const returnedValue = await userRepository.registration(userData);
 
-        expect(returnedValue).toStrictEqual("register success");
+        expect(returnedValue).toStrictEqual(expectedResponse);
       });
 
       test("And then if the API returns an error, the method should return an error", async () => {
