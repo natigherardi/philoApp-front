@@ -18,6 +18,19 @@ const handlers = [
     const responseRegister = username === "" ? "error" : "register success";
     return res(ctx.status(200), ctx.json(responseRegister));
   }),
+  rest.get(`${url}/quotes/all-quotes`, async (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          author: "test",
+          image: "test",
+          textContent: "test",
+          user: "test",
+        },
+      ])
+    );
+  }),
 ];
 
 export default handlers;
