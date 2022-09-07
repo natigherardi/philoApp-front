@@ -1,11 +1,11 @@
-import GeneralCard from "../../components/GeneralCard/GeneralCard";
+import QuoteCard from "../../components/QuoteCard/QuoteCard";
 import Header from "../../components/Header/Header";
 
 const HomePage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <GeneralCard
+      <QuoteCard
         quote={{
           author: "Aristoteles",
           image:

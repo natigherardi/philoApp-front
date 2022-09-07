@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import docStyle from "../../style/style";
 
-const GeneralCardStyled = styled.div`
+const QuoteCardStyled = styled.div`
   background-color: ${docStyle.colors.secondaryColor};
   padding: ${docStyle.padding.medium};
   display: flex;
@@ -26,4 +26,4 @@ const GeneralCardStyled = styled.div`
   }
 `;
 
-export default GeneralCardStyled;
+export default QuoteCardStyled;

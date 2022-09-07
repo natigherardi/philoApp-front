@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import GeneralCard from "./GeneralCard";
+import QuoteCard from "./QuoteCard";
 
 describe("Given a General Card component", () => {
   describe("When it receives a quote object and it's rendered", () => {
@@ -10,7 +10,7 @@ describe("Given a General Card component", () => {
         image: "text image",
       };
 
-      render(<GeneralCard quote={quote} />);
+      render(<QuoteCard quote={quote} />);
 
       [
         screen.getByAltText(quote.author),

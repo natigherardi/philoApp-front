@@ -1,20 +1,20 @@
 import Quote from "../../types/Quote";
-import GeneralCardStyled from "./GeneralCardStyled";
+import QuoteCardStyled from "./QuoteCardStyled";
 
-interface GeneralCardProps {
+interface QuoteCardProps {
   quote: Partial<Quote>;
 }
 
-const GeneralCard = ({
+const QuoteCard = ({
   quote: { author, image, textContent },
-}: GeneralCardProps): JSX.Element => {
+}: QuoteCardProps): JSX.Element => {
   return (
-    <GeneralCardStyled>
+    <QuoteCardStyled>
       <p className="card__text">{textContent}</p>
       <span className="card__author">{author}</span>
       <img src={image as string} alt={author} className="card__image" />
-    </GeneralCardStyled>
+    </QuoteCardStyled>
   );
 };
 
-export default GeneralCard;
+export default QuoteCard;
