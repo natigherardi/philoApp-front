@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import axios from "axios";
-import UserRepository from "../repositories/UserRepository";
-import { openModalActionCreator } from "../store/ui/uiSlice";
-import Wrapper from "../testUtils/Wrapper";
+import UserRepository from "../../repositories/UserRepository/UserRepository";
+import { openModalActionCreator } from "../../store/ui/uiSlice";
+import Wrapper from "../../testUtils/Wrapper";
 import { useUserSession } from "./useUserSession";
 
 const mockedDispatch = jest.fn();
@@ -14,7 +14,7 @@ jest.mock("react-redux", () => ({
 
 const mockedTokenDecodification = { username: "", id: "", token: "" };
 
-jest.mock("../utils/tokenDecoder", () => () => mockedTokenDecodification);
+jest.mock("../../utils/tokenDecoder", () => () => mockedTokenDecodification);
 
 const url = process.env.REACT_APP_API_URL as string;
 

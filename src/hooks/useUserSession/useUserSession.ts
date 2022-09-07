@@ -1,10 +1,10 @@
-import UserRepository from "../repositories/UserRepository";
-import { useAppDispatch } from "../store/hooks";
-import { openModalActionCreator } from "../store/ui/uiSlice";
-import { loginUserActionCreator } from "../store/user/userSessionSlice";
-import { Modal } from "../types/UiData";
-import { UserData, UserLogin } from "../types/UserData";
-import tokenDecoder from "../utils/tokenDecoder";
+import UserRepository from "../../repositories/UserRepository/UserRepository";
+import { useAppDispatch } from "../../store/hooks";
+import { openModalActionCreator } from "../../store/ui/uiSlice";
+import { loginUserActionCreator } from "../../store/user/userSessionSlice";
+import { Modal } from "../../types/UiData";
+import { UserData, UserLogin } from "../../types/UserData";
+import tokenDecoder from "../../utils/tokenDecoder";
 
 export const useUserSession = () => {
   const url = process.env.REACT_APP_API_URL as string;
@@ -12,11 +12,6 @@ export const useUserSession = () => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userData: UserLogin) => {
-    let modal: Modal = {
-      isError: false,
-      message: "Login correct",
-      isOpen: true,
-    };
     try {
       const {
         user: { token },
@@ -26,9 +21,13 @@ export const useUserSession = () => {
       dispatch(loginUserActionCreator(userLogged));
       localStorage.setItem("token", token);
     } catch (error) {
-      modal = { ...modal, isError: true, message: "Login failed" };
+      const modal: Modal = {
+        isOpen: true,
+        isError: true,
+        message: "Login failed",
+      };
+      dispatch(openModalActionCreator(modal));
     }
-    dispatch(openModalActionCreator(modal));
   };
 
   const registerUser = async (userData: UserData) => {

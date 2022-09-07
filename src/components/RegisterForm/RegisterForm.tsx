@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import FormContainer from "./RegisterFormStyled";
-import { useUserSession } from "../../hooks/useUserSession";
+import { useUserSession } from "../../hooks/useUserSession/useUserSession";
 import LargeButton from "../LargeButton/LargeButton";
 
 const RegisterForm = (): JSX.Element => {
