@@ -12,6 +12,11 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockedDispatch,
 }));
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => jest.fn(),
+}));
+
 const mockedTokenDecodification = { username: "", id: "", token: "" };
 
 jest.mock("../../utils/tokenDecoder", () => () => mockedTokenDecodification);

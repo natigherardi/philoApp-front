@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import UserRepository from "../../repositories/UserRepository/UserRepository";
 import { useAppDispatch } from "../../store/hooks";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
@@ -10,6 +11,7 @@ export const useUserSession = () => {
   const url = process.env.REACT_APP_API_URL as string;
   const userRepository = new UserRepository(url);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const loginUser = async (userData: UserLogin) => {
     try {
@@ -20,6 +22,7 @@ export const useUserSession = () => {
 
       dispatch(loginUserActionCreator(userLogged));
       localStorage.setItem("token", token);
+      navigate("/home");
     } catch (error) {
       const modal: Modal = {
         isOpen: true,
