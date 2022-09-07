@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { closeModalActionCreator } from "../../store/ui/uiSlice";
 import Wrapper from "../../testUtils/Wrapper";
 import Modal from "./Modal";
@@ -97,5 +97,20 @@ describe("Given a modal", () => {
     jest.advanceTimersByTime(5000);
 
     expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
+  });
+
+  describe("And when the suer clicks on the close button", () => {
+    test("Then the dispatch should be called ith an action to close the modal", async () => {
+      render(
+        <Wrapper>
+          <Modal />
+        </Wrapper>
+      );
+      const closeButton = screen.getByTestId("close-icon");
+
+      await fireEvent.click(closeButton);
+
+      expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
+    });
   });
 });

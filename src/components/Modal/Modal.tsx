@@ -31,6 +31,7 @@ const Modal = (): JSX.Element => {
             icon={faX}
             className="modal__close-icon"
             onClick={handleClose}
+            data-testid="close-icon"
           />
           <span className="modal__title">{text}</span>
           <span className="modal__description">{message}</span>
