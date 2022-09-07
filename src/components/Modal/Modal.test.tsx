@@ -86,14 +86,16 @@ describe("Given a modal", () => {
   });
 
   test("And then if it is open, after 5 seconds the dispatch should be called with an action closeModal", () => {
+    jest.useFakeTimers();
+
     render(
       <Wrapper>
         <Modal />
       </Wrapper>
     );
 
-    setTimeout(() => {
-      expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
-    }, 5000);
+    jest.advanceTimersByTime(5000);
+
+    expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
   });
 });
