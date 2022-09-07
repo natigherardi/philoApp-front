@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import QuotesRepository from "../../repositories/QuotesRepository/QuotesRepository";
 import { useAppDispatch } from "../../store/hooks";
 import { loadQuotesActionCreator } from "../../store/quotes/quotesSlice";
@@ -9,10 +10,8 @@ const useQuotes = () => {
   const dispatch = useAppDispatch();
 
   const loadAllQuotes = async () => {
-    try {
-      const quotes = await quotesRepository.getAllQuotes();
-      dispatch(loadQuotesActionCreator(quotes));
-    } catch (error) {
+    const quotes = await quotesRepository.getAllQuotes();
+    if (quotes instanceof Error) {
       dispatch(
         openModalActionCreator({
           isError: true,
@@ -20,7 +19,9 @@ const useQuotes = () => {
           message: "We couldn't load any quotes. Sorry :(",
         })
       );
+      return;
     }
+    dispatch(loadQuotesActionCreator(quotes));
   };
 
   return { loadAllQuotes };
