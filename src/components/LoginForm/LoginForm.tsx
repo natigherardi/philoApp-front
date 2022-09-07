@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from "react";
-import { useUserSession } from "../../hooks/useUserSession";
+import { useUserSession } from "../../hooks/useUserSession/useUserSession";
 import LargeButton from "../LargeButton/LargeButton";
 import LoginFormContainer from "./LoginFormStyled";
 

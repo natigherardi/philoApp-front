@@ -1,6 +1,6 @@
 import axios from "axios";
-import { IQuotesRepository } from "../types/IQuotesRepository";
-import { Item } from "../types/IUserRepository";
+import { IQuotesRepository } from "../../types/IQuotesRepository";
+import { Item } from "../../types/IUserRepository";
 
 class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
   constructor(public apiUrl: string) {}

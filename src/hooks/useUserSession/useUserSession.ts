@@ -1,10 +1,10 @@
-import UserRepository from "../repositories/UserRepository";
-import { useAppDispatch } from "../store/hooks";
-import { openModalActionCreator } from "../store/ui/uiSlice";
-import { loginUserActionCreator } from "../store/user/userSessionSlice";
-import { Modal } from "../types/UiData";
-import { UserData, UserLogin } from "../types/UserData";
-import tokenDecoder from "../utils/tokenDecoder";
+import UserRepository from "../../repositories/UserRepository/UserRepository";
+import { useAppDispatch } from "../../store/hooks";
+import { openModalActionCreator } from "../../store/ui/uiSlice";
+import { loginUserActionCreator } from "../../store/user/userSessionSlice";
+import { Modal } from "../../types/UiData";
+import { UserData, UserLogin } from "../../types/UserData";
+import tokenDecoder from "../../utils/tokenDecoder";
 
 export const useUserSession = () => {
   const url = process.env.REACT_APP_API_URL as string;
