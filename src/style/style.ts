@@ -12,7 +12,7 @@ const docStyle = {
   fontSize: {
     xl: "62px",
     large: "52px",
-    medium: "32px",
+    medium: "28px",
     small: "24px",
   },
   fontWeight: {
@@ -20,7 +20,7 @@ const docStyle = {
     bold: "400",
   },
   borderRadius: {
-    large: "50px",
+    large: "50%",
     medium: "16px",
   },
   padding: {
