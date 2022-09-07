@@ -4,6 +4,7 @@ interface Quote {
   user: string;
   image: string | File;
   owner: string;
+  id?: string;
   favoritedBy?: string[];
   year?: number;
   school?: string;
