@@ -2,7 +2,7 @@ import Quote from "../../types/Quote";
 import GeneralCardStyled from "./GeneralCardStyled";
 
 interface GeneralCardProps {
-  quote: Quote;
+  quote: Partial<Quote>;
 }
 
 const GeneralCard = ({
