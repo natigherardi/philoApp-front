@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import App from "../../App";
 import Wrapper from "../../testUtils/Wrapper";
-import LoadingModal from "./LoadingModal";
 
 let mockedUseSelector = {};
 let mockedDispatch = jest.fn();
