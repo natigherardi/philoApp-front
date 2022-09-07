@@ -1,3 +1,4 @@
+import axios from "axios";
 import QuotesRepository from "./QuotesRepository";
 
 describe("Given a QuotesRepository class", () => {
@@ -26,6 +27,16 @@ describe("Given a QuotesRepository class", () => {
       const returnedValue = await quotesRepository.getAllQuotes();
 
       expect(returnedValue).toStrictEqual(expectedResponse);
+    });
+
+    test("And then if the API responds with an error, the method should return it", async () => {
+      const error = new Error("error");
+      axios.get = jest.fn().mockRejectedValue(error);
+      const quotesMockRepository = new QuotesRepository(url);
+
+      const returnedValue = await quotesMockRepository.getAllQuotes();
+
+      expect(returnedValue).toStrictEqual(error);
     });
   });
 });
