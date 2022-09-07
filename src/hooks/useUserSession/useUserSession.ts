@@ -12,11 +12,6 @@ export const useUserSession = () => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userData: UserLogin) => {
-    let modal: Modal = {
-      isError: false,
-      message: "Login correct",
-      isOpen: true,
-    };
     try {
       const {
         user: { token },
@@ -26,9 +21,13 @@ export const useUserSession = () => {
       dispatch(loginUserActionCreator(userLogged));
       localStorage.setItem("token", token);
     } catch (error) {
-      modal = { ...modal, isError: true, message: "Login failed" };
+      const modal: Modal = {
+        isOpen: true,
+        isError: true,
+        message: "Login failed",
+      };
+      dispatch(openModalActionCreator(modal));
     }
-    dispatch(openModalActionCreator(modal));
   };
 
   const registerUser = async (userData: UserData) => {
