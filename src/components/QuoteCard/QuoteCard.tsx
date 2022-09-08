@@ -12,7 +12,15 @@ const QuoteCard = ({
     <QuoteCardStyled>
       <p className="card__text">{textContent}</p>
       <span className="card__author">{author}</span>
-      <img src={image as string} alt={author} className="card__image" />
+      <div className="card__image-container">
+        <img
+          src={image as string}
+          alt={author}
+          className="card__image"
+          width="150"
+          height="150"
+        />
+      </div>
     </QuoteCardStyled>
   );
 };

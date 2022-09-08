@@ -5,6 +5,7 @@ import "./menu.css";
 const Menu = (): JSX.Element => {
   return (
     <BurgerMenu right noOverlay>
+      <NavLink to={"/home"}>Home</NavLink>
       <NavLink to={"/register"}>Register</NavLink>
       <NavLink to={"/login"}>Log In</NavLink>
     </BurgerMenu>
