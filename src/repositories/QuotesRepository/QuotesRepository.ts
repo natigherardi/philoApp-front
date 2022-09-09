@@ -1,6 +1,4 @@
 import axios from "axios";
-import { config } from "process";
-import { useAppSelector } from "../../store/hooks";
 import { IQuotesRepository } from "../../types/IQuotesRepository";
 import { Item } from "../../types/IUserRepository";
 
@@ -23,11 +21,11 @@ class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
       params: { id },
     };
     try {
-      const { data: usersLists } = await axios.get(
-        `${this.apiUrl}/quotes/all-quotes`,
+      const response = await axios.get(
+        `${this.apiUrl}/quotes/quotesByUser`,
         reqConfig
       );
-      return usersLists;
+      return response.data;
     } catch (error) {
       return error;
     }
