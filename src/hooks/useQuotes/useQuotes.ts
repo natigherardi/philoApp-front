@@ -48,8 +48,10 @@ const useQuotes = () => {
       }
 
       const {
-        quotes: { privateQuotes },
+        quotes: { quotesCreated, quotesFavorited },
       } = quotesData;
+
+      const privateQuotes = quotesCreated.concat(quotesFavorited);
 
       dispatch(loadPrivateQuotesActionCreator(privateQuotes));
     },
