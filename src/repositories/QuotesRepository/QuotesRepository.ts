@@ -14,6 +14,22 @@ class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
       return error;
     }
   };
+
+  getQuotesByUser = async (token: string, id: string) => {
+    const reqConfig = {
+      headers: { Authorization: `Bearer ${token}` },
+      params: { id },
+    };
+    try {
+      const response = await axios.get(
+        `${this.apiUrl}/quotes/quotesByUser`,
+        reqConfig
+      );
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 export default QuotesRepository;
