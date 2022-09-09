@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useQuotes from "../../hooks/useQuotes/useQuotes";
 import { useAppSelector } from "../../store/hooks";
-import Quote from "../../types/Quote";
+import { Quote } from "../../types/Quote";
 import QuoteCard from "../QuoteCard/QuoteCard";
 import QuotesListStyled from "./QuotesListStyled";
 

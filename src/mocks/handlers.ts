@@ -1,5 +1,4 @@
 import { rest } from "msw";
-import reportWebVitals from "../reportWebVitals";
 
 const url = process.env.REACT_APP_API_URL as string;
 const handlers = [

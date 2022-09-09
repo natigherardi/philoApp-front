@@ -1,4 +1,4 @@
-import Quote from "../../types/Quote";
+import { Quote } from "../../types/Quote";
 import QuoteCardStyled from "./QuoteCardStyled";
 
 interface QuoteCardProps {

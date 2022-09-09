@@ -1,5 +1,5 @@
 import { configureStore, createReducer } from "@reduxjs/toolkit";
-import Quote from "../types/Quote";
+import { Quote } from "../types/Quote";
 
 const mockQuotesInitialSate: Quote[] = [
   {
