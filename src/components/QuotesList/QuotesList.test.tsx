@@ -5,6 +5,19 @@ import mockStore from "../../testUtils/mockStore";
 import WrapperProps from "../../types/Wrapper";
 import QuotesList from "./QuotesList";
 
+jest.mock("../../hooks/useQuotes/useQuotes", () => () => ({
+  loadPublicQuotes: () =>
+    jest.fn().mockReturnValue([
+      {
+        textContent: "test text",
+        author: "test author",
+        image: "test url image",
+        owner: "test owner",
+        id: "12",
+      },
+    ]),
+}));
+
 const Wrapper = ({ children }: WrapperProps) => {
   return (
     <BrowserRouter>

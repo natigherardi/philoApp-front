@@ -22,7 +22,7 @@ const QuotesList = (): JSX.Element => {
     <QuotesListStyled>
       {quotesCards.map((quote) => (
         <li key={quote.id}>
-          <QuoteCard quote={quote} />
+          <QuoteCard key={quote.id} quote={quote} />
         </li>
       ))}
     </QuotesListStyled>

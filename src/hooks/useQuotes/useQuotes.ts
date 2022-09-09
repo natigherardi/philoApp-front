@@ -13,8 +13,8 @@ const useQuotes = () => {
 
   const loadPublicQuotes = useCallback(async () => {
     const quotesRepository = new QuotesRepository(url);
-    const quotes = await quotesRepository.getAllQuotes();
-    if (quotes instanceof Error) {
+    const quotesData = await quotesRepository.getAllQuotes();
+    if (quotesData instanceof Error) {
       dispatch(
         openModalActionCreator({
           isError: true,
@@ -24,14 +24,19 @@ const useQuotes = () => {
       );
       return;
     }
-    dispatch(loadPublicQuotesActionCreator(quotes.publicQuotes));
+
+    const {
+      quotes: { publicQuotes },
+    } = quotesData;
+
+    dispatch(loadPublicQuotesActionCreator(publicQuotes));
   }, [url, dispatch]);
 
   const loadPrivateQuotes = useCallback(
     async (token: string, id: string) => {
       const quotesRepository = new QuotesRepository(url);
-      const { quotes } = await quotesRepository.getQuotesByUser(token, id);
-      if (quotes instanceof Error) {
+      const quotesData = await quotesRepository.getQuotesByUser(token, id);
+      if (quotesData instanceof Error) {
         dispatch(
           openModalActionCreator({
             isError: true,
@@ -41,7 +46,12 @@ const useQuotes = () => {
         );
         return;
       }
-      dispatch(loadPrivateQuotesActionCreator(quotes.privateQuotes));
+
+      const {
+        quotes: { privateQuotes },
+      } = quotesData;
+
+      dispatch(loadPrivateQuotesActionCreator(privateQuotes));
     },
     [url, dispatch]
   );
