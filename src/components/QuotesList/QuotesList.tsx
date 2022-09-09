@@ -1,28 +1,36 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import useQuotes from "../../hooks/useQuotes/useQuotes";
 import { useAppSelector } from "../../store/hooks";
-import { Quote } from "../../types/Quote";
 import QuoteCard from "../QuoteCard/QuoteCard";
 import QuotesListStyled from "./QuotesListStyled";
 
 const QuotesList = (): JSX.Element => {
-  const quotesCards: Quote[] = useAppSelector(
-    (state) => state.quotes.publicQuotes
+  const { privateQuotes, publicQuotes } = useAppSelector(
+    (state) => state.quotes
   );
 
-  const { loadPublicQuotes } = useQuotes();
+  const { id, token } = useAppSelector((state) => state.userSession.userData);
+
+  const { loadPublicQuotes, loadPrivateQuotes } = useQuotes();
+
+  const { pathname } = useLocation();
 
   useEffect(() => {
     (async () => {
-      await loadPublicQuotes();
+      pathname === "/home"
+        ? await loadPublicQuotes()
+        : await loadPrivateQuotes(token, id);
     })();
-  }, [loadPublicQuotes]);
+  }, [loadPublicQuotes, loadPrivateQuotes, pathname, id, token]);
+
+  let quotesToRender = pathname === "/home" ? publicQuotes : privateQuotes;
 
   return (
     <QuotesListStyled>
-      {quotesCards.map((quote) => (
+      {quotesToRender.map((quote) => (
         <li key={quote.id}>
-          <QuoteCard key={quote.id} quote={quote} />
+          <QuoteCard quote={quote} />
         </li>
       ))}
     </QuotesListStyled>

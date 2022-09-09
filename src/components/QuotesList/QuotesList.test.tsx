@@ -16,6 +16,23 @@ jest.mock("../../hooks/useQuotes/useQuotes", () => () => ({
         id: "12",
       },
     ]),
+  loadPrivateQuotes: () =>
+    jest.fn().mockReturnValue([
+      {
+        textContent: "test text private quote",
+        author: "test author",
+        image: "test url image",
+        owner: "test owner",
+        id: "12",
+      },
+    ]),
+}));
+
+let mockedLocation: { pathname: string };
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useLocation: () => mockedLocation,
 }));
 
 const Wrapper = ({ children }: WrapperProps) => {
@@ -27,19 +44,49 @@ const Wrapper = ({ children }: WrapperProps) => {
 };
 
 describe("Given a quotes list", () => {
-  describe("When it's rendered and the state has a TestQuote", () => {
-    test("Then it should show a list with a TestQuote card", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  describe("When it's rendered in home page and the state has a public TestQuote", () => {
+    test("Then it should show a list with a public Quote card", () => {
+      mockedLocation = {
+        pathname: "/home",
+      };
+
       render(
         <Wrapper>
           <QuotesList />
         </Wrapper>
       );
 
-      const cardImage = screen.getByRole("list");
+      const list = screen.getByRole("list");
       const listItems = screen.getAllByRole("listitem");
+      const quoteText = screen.getByText("test text");
 
-      expect(cardImage).toBeInTheDocument();
-      expect(listItems.length).toBeGreaterThan(0);
+      expect(list).toBeInTheDocument();
+      expect(listItems.length).toBe(1);
+      expect(quoteText).toBeInTheDocument();
+    });
+  });
+
+  describe("And when there is  a private TestQuote in the state and the list is rendered in 'MyQuotes'", () => {
+    test("Then it should show a list with a private Quote card", () => {
+      mockedLocation = {
+        pathname: "/notHome",
+      };
+
+      render(
+        <Wrapper>
+          <QuotesList />
+        </Wrapper>
+      );
+      const list = screen.getByRole("list");
+      const listItems = screen.getAllByRole("listitem");
+      const quoteText = screen.getByText("test text private quote");
+
+      expect(list).toBeInTheDocument();
+      expect(listItems.length).toBe(1);
+      expect(quoteText).toBeInTheDocument();
     });
   });
 });
