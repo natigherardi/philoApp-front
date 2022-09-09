@@ -15,33 +15,36 @@ jest.mock("react-redux", () => ({
 
 const url = process.env.REACT_APP_API_URL as string;
 
-describe("Given the loadAllQuotes function returned by the useQuotes hook", () => {
+describe("Given the loadPublicQuotes function returned by the useQuotes hook", () => {
   describe("When it is is invoked with a user", () => {
     afterEach(() => {
       jest.clearAllMocks();
     });
     const {
       result: {
-        current: { loadAllQuotes },
+        current: { loadPublicQuotes },
       },
     } = renderHook(() => useQuotes(), { wrapper: Wrapper });
 
     test("Then the dispatch should be called with an action loadPublicQuotes with the quotes returned by the getAllQuotes repo method", async () => {
-      const quotes = [
-        {
-          author: "test",
-          image: "test",
-          textContent: "test",
-          user: "test",
-          owner: "6310d724c2e50669e79b0fb5",
-        },
-      ];
-      axios.get = jest.fn().mockResolvedValue({ data: quotes });
+      const quotesReturned = {
+        publicQuotes: [
+          {
+            author: "test",
+            image: "test",
+            textContent: "test",
+            user: "test",
+            owner: "6310d724c2e50669e79b0fb5",
+          },
+        ],
+        privateQuotes: [],
+      };
+      axios.get = jest.fn().mockResolvedValue({ data: quotesReturned });
 
-      await loadAllQuotes();
+      await loadPublicQuotes();
 
       expect(mockedDispatch).toHaveBeenCalledWith(
-        loadPublicQuotesActionCreator(quotes)
+        loadPublicQuotesActionCreator(quotesReturned.publicQuotes)
       );
     });
 
@@ -55,7 +58,7 @@ describe("Given the loadAllQuotes function returned by the useQuotes hook", () =
       };
       axios.get = jest.fn().mockRejectedValue(error);
 
-      await loadAllQuotes();
+      await loadPublicQuotes();
 
       expect(mockedDispatch).toHaveBeenCalledWith(
         openModalActionCreator(expectedModal)

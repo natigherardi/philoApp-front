@@ -1,14 +1,17 @@
 import { useCallback } from "react";
 import QuotesRepository from "../../repositories/QuotesRepository/QuotesRepository";
 import { useAppDispatch } from "../../store/hooks";
-import { loadPublicQuotesActionCreator } from "../../store/quotes/quotesSlice";
+import {
+  loadPrivateQuotesActionCreator,
+  loadPublicQuotesActionCreator,
+} from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
 
 const useQuotes = () => {
   const url = process.env.REACT_APP_API_URL as string;
   const dispatch = useAppDispatch();
 
-  const loadAllQuotes = useCallback(async () => {
+  const loadPublicQuotes = useCallback(async () => {
     const quotesRepository = new QuotesRepository(url);
     const quotes = await quotesRepository.getAllQuotes();
     if (quotes instanceof Error) {
@@ -21,10 +24,10 @@ const useQuotes = () => {
       );
       return;
     }
-    dispatch(loadPublicQuotesActionCreator(quotes));
+    dispatch(loadPublicQuotesActionCreator(quotes.publicQuotes));
   }, [url, dispatch]);
 
-  const loadPublicQuotesByUser = useCallback(
+  const loadPrivateQuotes = useCallback(
     async (token: string, id: string) => {
       const quotesRepository = new QuotesRepository(url);
       const { quotes } = await quotesRepository.getQuotesByUser(token, id);
@@ -38,12 +41,12 @@ const useQuotes = () => {
         );
         return;
       }
-      dispatch(load);
+      dispatch(loadPrivateQuotesActionCreator(quotes.privateQuotes));
     },
     [url, dispatch]
   );
 
-  return { loadAllQuotes };
+  return { loadPublicQuotes, loadPrivateQuotes };
 };
 
 export default useQuotes;

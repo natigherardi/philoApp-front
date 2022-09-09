@@ -6,15 +6,17 @@ import QuoteCard from "../QuoteCard/QuoteCard";
 import QuotesListStyled from "./QuotesListStyled";
 
 const QuotesList = (): JSX.Element => {
-  const quotesCards: Quote[] = useAppSelector((state) => state.quotes);
+  const quotesCards: Quote[] = useAppSelector(
+    (state) => state.quotes.publicQuotes
+  );
 
-  const { loadAllQuotes } = useQuotes();
+  const { loadPublicQuotes } = useQuotes();
 
   useEffect(() => {
     (async () => {
-      await loadAllQuotes();
+      await loadPublicQuotes();
     })();
-  }, [loadAllQuotes]);
+  }, [loadPublicQuotes]);
 
   return (
     <QuotesListStyled>
