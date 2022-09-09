@@ -1,7 +1,6 @@
 interface Quote {
   textContent: string;
   author: string;
-  user: string;
   image: string | File;
   owner: string;
   id?: string;

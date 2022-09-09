@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Quote from "../../types/Quote";
 
-const quotesInitialSate: Quote[] = [
-  { author: "", image: "", owner: "", textContent: "", user: "" },
-];
+const quotesInitialSate: Quote[] = [];
 
 const quotesSlice = createSlice({
   name: "quotes",
