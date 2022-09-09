@@ -88,8 +88,16 @@ describe("Given the loadPrivateQuotes function returned by the useQuotes hook", 
     test("Then the dispatch should be called with an action loadPrivateQuotes with the quotes returned by the getQuotesByUser repo method", async () => {
       const quotesReturned = {
         quotes: {
-          publicQuotes: [],
-          privateQuotes: [
+          quotesCreated: [
+            {
+              author: "test",
+              image: "test",
+              textContent: "test",
+              user: "test",
+              owner: "6310d724c2e50669e70b0fb5",
+            },
+          ],
+          quotesFavorited: [
             {
               author: "test",
               image: "test",
@@ -100,7 +108,10 @@ describe("Given the loadPrivateQuotes function returned by the useQuotes hook", 
           ],
         },
       };
-      const expectedActionPayload = quotesReturned.quotes.privateQuotes;
+      const {
+        quotes: { quotesCreated, quotesFavorited },
+      } = quotesReturned;
+      const expectedActionPayload = quotesCreated.concat(quotesFavorited);
       axios.get = jest.fn().mockResolvedValue({ data: quotesReturned });
 
       await loadPrivateQuotes(userToken, userId);
