@@ -20,5 +20,7 @@ const quotesSlice = createSlice({
 
 export const quotesReducer = quotesSlice.reducer;
 
-export const { loadPublicQuotes: loadPublicQuotesActionCreator } =
-  quotesSlice.actions;
+export const {
+  loadPublicQuotes: loadPublicQuotesActionCreator,
+  loadPrivateQuotes: loadPrivateQuotesActionCreator,
+} = quotesSlice.actions;
