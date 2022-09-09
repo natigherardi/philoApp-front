@@ -18,6 +18,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/my-quotes" element={<HomePage />} />
         </Routes>
       )}
     </MainContainer>

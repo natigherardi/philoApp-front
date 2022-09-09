@@ -8,6 +8,7 @@ const Menu = (): JSX.Element => {
       <NavLink to={"/home"}>Home</NavLink>
       <NavLink to={"/register"}>Register</NavLink>
       <NavLink to={"/login"}>Log In</NavLink>
+      <NavLink to={"/my-quotes"}>MyQuotes</NavLink>
     </BurgerMenu>
   );
 };
