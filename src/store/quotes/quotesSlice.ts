@@ -1,17 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Quote from "../../types/Quote";
+import { Quote, QuotesStore } from "../../types/Quote";
 
-const quotesInitialSate: Quote[] = [];
+const quotesInitialSate: QuotesStore = { privateQuotes: [], publicQuotes: [] };
 
 const quotesSlice = createSlice({
   name: "quotes",
   initialState: quotesInitialSate,
   reducers: {
-    loadQuotes: (previusQuotes: Quote[], action: PayloadAction<Quote[]>) =>
-      action.payload,
+    loadPublicQuotes: (
+      previusQuotes: QuotesStore,
+      action: PayloadAction<Quote[]>
+    ) => ({ ...previusQuotes, publicQuotes: action.payload }),
+    loadPrivateQuotes: (
+      previusQuotes: QuotesStore,
+      action: PayloadAction<Quote[]>
+    ) => ({ ...previusQuotes, privateQuotes: action.payload }),
   },
 });
 
 export const quotesReducer = quotesSlice.reducer;
 
-export const { loadQuotes: loadQuotesActionCreator } = quotesSlice.actions;
+export const {
+  loadPublicQuotes: loadPublicQuotesActionCreator,
+  loadPrivateQuotes: loadPrivateQuotesActionCreator,
+} = quotesSlice.actions;

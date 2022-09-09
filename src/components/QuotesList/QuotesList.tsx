@@ -1,26 +1,28 @@
 import { useEffect } from "react";
 import useQuotes from "../../hooks/useQuotes/useQuotes";
 import { useAppSelector } from "../../store/hooks";
-import Quote from "../../types/Quote";
+import { Quote } from "../../types/Quote";
 import QuoteCard from "../QuoteCard/QuoteCard";
 import QuotesListStyled from "./QuotesListStyled";
 
 const QuotesList = (): JSX.Element => {
-  const quotesCards: Quote[] = useAppSelector((state) => state.quotes);
+  const quotesCards: Quote[] = useAppSelector(
+    (state) => state.quotes.publicQuotes
+  );
 
-  const { loadAllQuotes } = useQuotes();
+  const { loadPublicQuotes } = useQuotes();
 
   useEffect(() => {
     (async () => {
-      await loadAllQuotes();
+      await loadPublicQuotes();
     })();
-  }, [loadAllQuotes]);
+  }, [loadPublicQuotes]);
 
   return (
     <QuotesListStyled>
       {quotesCards.map((quote) => (
         <li key={quote.id}>
-          <QuoteCard quote={quote} />
+          <QuoteCard key={quote.id} quote={quote} />
         </li>
       ))}
     </QuotesListStyled>

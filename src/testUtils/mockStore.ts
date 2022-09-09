@@ -1,19 +1,22 @@
 import { configureStore, createReducer } from "@reduxjs/toolkit";
-import Quote from "../types/Quote";
+import { QuotesStore } from "../types/Quote";
 
-const mockQuotesInitialSate: Quote[] = [
-  {
-    textContent: "test text",
-    author: "test author",
-    image: "test url image",
-    owner: "test owner",
-  },
-];
+const mockQuotesInitialSate: QuotesStore = {
+  publicQuotes: [
+    {
+      textContent: "test text",
+      author: "test author",
+      image: "test url image",
+      owner: "test owner",
+    },
+  ],
+  privateQuotes: [],
+};
 
-const mockQuotesReducer = createReducer<Quote[]>(
+const mockQuotesReducer = createReducer<QuotesStore>(
   mockQuotesInitialSate,
   (builder) => {
-    builder.addDefaultCase((state: Quote[]) => state);
+    builder.addDefaultCase((state: QuotesStore) => state);
   }
 );
 

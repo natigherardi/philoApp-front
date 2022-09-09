@@ -1,4 +1,4 @@
-interface Quote {
+export interface Quote {
   textContent: string;
   author: string;
   image: string | File;
@@ -10,4 +10,7 @@ interface Quote {
   book?: string;
 }
 
-export default Quote;
+export interface QuotesStore {
+  publicQuotes: Quote[];
+  privateQuotes: Quote[];
+}

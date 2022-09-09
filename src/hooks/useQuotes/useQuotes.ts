@@ -1,17 +1,20 @@
 import { useCallback } from "react";
 import QuotesRepository from "../../repositories/QuotesRepository/QuotesRepository";
 import { useAppDispatch } from "../../store/hooks";
-import { loadQuotesActionCreator } from "../../store/quotes/quotesSlice";
+import {
+  loadPrivateQuotesActionCreator,
+  loadPublicQuotesActionCreator,
+} from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
 
 const useQuotes = () => {
   const url = process.env.REACT_APP_API_URL as string;
   const dispatch = useAppDispatch();
 
-  const loadAllQuotes = useCallback(async () => {
+  const loadPublicQuotes = useCallback(async () => {
     const quotesRepository = new QuotesRepository(url);
-    const quotes = await quotesRepository.getAllQuotes();
-    if (quotes instanceof Error) {
+    const quotesData = await quotesRepository.getAllQuotes();
+    if (quotesData instanceof Error) {
       dispatch(
         openModalActionCreator({
           isError: true,
@@ -21,10 +24,39 @@ const useQuotes = () => {
       );
       return;
     }
-    dispatch(loadQuotesActionCreator(quotes));
+
+    const {
+      quotes: { publicQuotes },
+    } = quotesData;
+
+    dispatch(loadPublicQuotesActionCreator(publicQuotes));
   }, [url, dispatch]);
 
-  return { loadAllQuotes };
+  const loadPrivateQuotes = useCallback(
+    async (token: string, id: string) => {
+      const quotesRepository = new QuotesRepository(url);
+      const quotesData = await quotesRepository.getQuotesByUser(token, id);
+      if (quotesData instanceof Error) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            isOpen: true,
+            message: "We couldn't load any quotes. Sorry :(",
+          })
+        );
+        return;
+      }
+
+      const {
+        quotes: { privateQuotes },
+      } = quotesData;
+
+      dispatch(loadPrivateQuotesActionCreator(privateQuotes));
+    },
+    [url, dispatch]
+  );
+
+  return { loadPublicQuotes, loadPrivateQuotes };
 };
 
 export default useQuotes;
