@@ -1,7 +1,7 @@
-import { loadQuotesActionCreator, quotesReducer } from "./quotesSlice";
+import { loadPublicQuotesActionCreator, quotesReducer } from "./quotesSlice";
 
 describe("Given a quotes reducer", () => {
-  describe("When it is called with a loadQuotes action", () => {
+  describe("When it is called with a loadPublicQuotes action", () => {
     test("Then it should return the quotes received from the action payload", () => {
       const previusQuotes = [
         { author: "", image: "", owner: "", textContent: "", user: "" },
@@ -18,7 +18,7 @@ describe("Given a quotes reducer", () => {
 
       const newQuotes = quotesReducer(
         previusQuotes,
-        loadQuotesActionCreator(loadedQuotes)
+        loadPublicQuotesActionCreator(loadedQuotes)
       );
 
       expect(newQuotes).toStrictEqual(loadedQuotes);

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import QuotesRepository from "../../repositories/QuotesRepository/QuotesRepository";
 import { useAppDispatch } from "../../store/hooks";
-import { loadQuotesActionCreator } from "../../store/quotes/quotesSlice";
+import { loadPublicQuotesActionCreator } from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
 
 const useQuotes = () => {
@@ -21,8 +21,27 @@ const useQuotes = () => {
       );
       return;
     }
-    dispatch(loadQuotesActionCreator(quotes));
+    dispatch(loadPublicQuotesActionCreator(quotes));
   }, [url, dispatch]);
+
+  const loadPublicQuotesByUser = useCallback(
+    async (token: string, id: string) => {
+      const quotesRepository = new QuotesRepository(url);
+      const { quotes } = await quotesRepository.getQuotesByUser(token, id);
+      if (quotes instanceof Error) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            isOpen: true,
+            message: "We couldn't load any quotes. Sorry :(",
+          })
+        );
+        return;
+      }
+      dispatch(load);
+    },
+    [url, dispatch]
+  );
 
   return { loadAllQuotes };
 };

@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import axios from "axios";
-import { loadQuotesActionCreator } from "../../store/quotes/quotesSlice";
+import { loadPublicQuotesActionCreator } from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
 import Wrapper from "../../testUtils/Wrapper";
 import { Modal } from "../../types/UiData";
@@ -26,7 +26,7 @@ describe("Given the loadAllQuotes function returned by the useQuotes hook", () =
       },
     } = renderHook(() => useQuotes(), { wrapper: Wrapper });
 
-    test("Then the dispatch should be called with an action loadQuotes with the quotes returned by the getAllQuotes repo method", async () => {
+    test("Then the dispatch should be called with an action loadPublicQuotes with the quotes returned by the getAllQuotes repo method", async () => {
       const quotes = [
         {
           author: "test",
@@ -41,7 +41,7 @@ describe("Given the loadAllQuotes function returned by the useQuotes hook", () =
       await loadAllQuotes();
 
       expect(mockedDispatch).toHaveBeenCalledWith(
-        loadQuotesActionCreator(quotes)
+        loadPublicQuotesActionCreator(quotes)
       );
     });
 
