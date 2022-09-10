@@ -30,6 +30,24 @@ class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
       return error;
     }
   };
+
+  deleteQuotes = async (userId: string, token: string, quoteId: string) => {
+    const reqConfig = {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { user: userId },
+      params: { id: quoteId },
+    };
+
+    try {
+      const response = await axios.delete(
+        `${this.apiUrl}/quotes/quote`,
+        reqConfig
+      );
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 export default QuotesRepository;
