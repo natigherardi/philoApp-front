@@ -31,7 +31,7 @@ class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
     }
   };
 
-  deleteQuotes = async (userId: string, token: string, quoteId: string) => {
+  deleteQuote = async (userId: string, token: string, quoteId: string) => {
     const reqConfig = {
       headers: { Authorization: `Bearer ${token}` },
       data: { user: userId },

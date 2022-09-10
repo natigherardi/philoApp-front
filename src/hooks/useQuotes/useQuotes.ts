@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import QuotesRepository from "../../repositories/QuotesRepository/QuotesRepository";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
@@ -10,6 +10,10 @@ import { openModalActionCreator } from "../../store/ui/uiSlice";
 const useQuotes = () => {
   const url = process.env.REACT_APP_API_URL as string;
   const dispatch = useAppDispatch();
+  const {
+    isLoggedIn,
+    userData: { id: userId, token },
+  } = useAppSelector((state) => state.userSession);
 
   const loadPublicQuotes = useCallback(async () => {
     const quotesRepository = new QuotesRepository(url);
@@ -58,7 +62,33 @@ const useQuotes = () => {
     [url, dispatch]
   );
 
-  return { loadPublicQuotes, loadPrivateQuotes };
+  const deleteQuote = async (quoteId: string) => {
+    if (!isLoggedIn) {
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          isOpen: true,
+          message: "You have to be logged in to do this action",
+        })
+      );
+    }
+    const quotesRepository = new QuotesRepository(url);
+    const deleteResult = await quotesRepository.deleteQuote(
+      userId,
+      token,
+      quoteId
+    );
+    if (deleteResult instanceof Error) {
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          isOpen: true,
+          message: "Couldn't delete the quote. Sorry :(",
+        })
+      );
+    }
+  };
+  return { loadPublicQuotes, loadPrivateQuotes, deleteQuote };
 };
 
 export default useQuotes;

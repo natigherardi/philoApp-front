@@ -99,7 +99,7 @@ describe("Given a QuotesRepository class", () => {
     });
   });
 
-  describe("When the deleteQuotes method is called with a userId, a token and a QuoteId to delete", () => {
+  describe("When the deleteQuote method is called with a userId, a token and a QuoteId to delete", () => {
     const quotesRepo = new QuotesRepository(url);
     const mockToken = "mockToken";
     const expectedResponse = "mock delete correct";
@@ -108,7 +108,7 @@ describe("Given a QuotesRepository class", () => {
     describe("When the API responds succeswsfully", () => {
       test("Then it should return the data receveid", async () => {
         const mockQuoteId = "mockQuoteId";
-        const result = await quotesRepo.deleteQuotes(
+        const result = await quotesRepo.deleteQuote(
           mockUserId,
           mockToken,
           mockQuoteId
@@ -122,7 +122,7 @@ describe("Given a QuotesRepository class", () => {
       test("Then it should return it", async () => {
         const badQuoteId = "test bad ID";
 
-        const result = await quotesRepo.deleteQuotes(
+        const result = await quotesRepo.deleteQuote(
           mockUserId,
           mockToken,
           badQuoteId

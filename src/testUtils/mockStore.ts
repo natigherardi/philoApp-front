@@ -1,6 +1,7 @@
 import { configureStore, createReducer } from "@reduxjs/toolkit";
 import { QuotesStore } from "../types/Quote";
 import SessionInfo from "../types/SessionInfo";
+import { UiData } from "../types/UiData";
 
 const mockQuotesInitialSate: QuotesStore = {
   publicQuotes: [
@@ -28,6 +29,11 @@ const mockUserInitialState = {
   isLoggedIn: false,
 };
 
+const mockUiInitialState: UiData = {
+  isLoading: false,
+  modal: { isError: false, isOpen: true, message: "no message" },
+};
+
 const mockQuotesReducer = createReducer<QuotesStore>(
   mockQuotesInitialSate,
   (builder) => {
@@ -42,10 +48,15 @@ const mockUserSessionReducer = createReducer<SessionInfo>(
   }
 );
 
+const mockUiReducer = createReducer<UiData>(mockUiInitialState, (builder) => {
+  builder.addDefaultCase((state: UiData) => state);
+});
+
 const mockStore = configureStore({
   reducer: {
     quotes: mockQuotesReducer,
     userSession: mockUserSessionReducer,
+    ui: mockUiReducer,
   },
 });
 
