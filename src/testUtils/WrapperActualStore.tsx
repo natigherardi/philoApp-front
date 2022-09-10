@@ -1,14 +1,14 @@
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { store } from "../store/store";
 import WrapperProps from "../types/Wrapper";
-import mockStore from "./mockStore";
 
-const Wrapper = ({ children }: WrapperProps) => {
+const WrapperRealStore = ({ children }: WrapperProps) => {
   return (
     <BrowserRouter>
-      <Provider store={mockStore}>{children}</Provider>
+      <Provider store={store}>{children}</Provider>
     </BrowserRouter>
   );
 };
 
-export default Wrapper;
+export default WrapperRealStore;
