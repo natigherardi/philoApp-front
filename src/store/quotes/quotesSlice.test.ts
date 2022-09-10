@@ -15,7 +15,6 @@ describe("Given a quotes reducer", () => {
         owner: "test previus quote",
         id: "test previus quote",
         textContent: "test previus quote",
-        user: "test previus quote",
       },
     ],
     publicQuotes: [],

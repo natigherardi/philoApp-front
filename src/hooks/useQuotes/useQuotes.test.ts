@@ -1,13 +1,11 @@
 import { renderHook } from "@testing-library/react";
 import axios from "axios";
-import { useAppDispatch } from "../../store/hooks";
 import {
   deleteQuoteActionCreator,
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
 } from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
-import { loginUserActionCreator } from "../../store/user/userSessionSlice";
 import Wrapper from "../../testUtils/Wrapper";
 import WrapperRealStore from "../../testUtils/WrapperActualStore";
 import { Modal } from "../../types/UiData";
@@ -19,8 +17,6 @@ jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockedDispatch,
 }));
-
-const url = process.env.REACT_APP_API_URL as string;
 
 describe("Given the loadPublicQuotes function returned by the useQuotes hook", () => {
   describe("When it is is invoked", () => {
