@@ -5,12 +5,13 @@ import SmallButtonStyled from "./SmallButtonStyled";
 
 interface SmallButtonProps {
   type: "delete" | "detail";
+  onClick: () => void;
 }
 
-const SmallButton = ({ type }: SmallButtonProps): JSX.Element => {
+const SmallButton = ({ type, onClick }: SmallButtonProps): JSX.Element => {
   return (
     <>
-      <SmallButtonStyled>
+      <SmallButtonStyled onClick={onClick}>
         {type === "delete" ? (
           <FontAwesomeIcon icon={faTrash} />
         ) : (
