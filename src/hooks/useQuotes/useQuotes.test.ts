@@ -1,11 +1,14 @@
 import { renderHook } from "@testing-library/react";
 import axios from "axios";
+import { useAppDispatch } from "../../store/hooks";
 import {
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
 } from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
+import { loginUserActionCreator } from "../../store/user/userSessionSlice";
 import Wrapper from "../../testUtils/Wrapper";
+import WrapperRealStore from "../../testUtils/WrapperActualStore";
 import { Modal } from "../../types/UiData";
 import useQuotes from "./useQuotes";
 
@@ -136,6 +139,55 @@ describe("Given the loadPrivateQuotes function returned by the useQuotes hook", 
       expect(mockedDispatch).toHaveBeenCalledWith(
         openModalActionCreator(expectedModal)
       );
+    });
+  });
+});
+
+describe("Given the deleteQuote function returned by the useQuotes hook", () => {
+  const mockQuoteId = "1";
+  describe("When it is called with a quoteId", () => {
+    describe("And the user is not logged in", () => {
+      test("Then the dispath should be called with an openModal action with message 'You have to be logged in to do this action'", async () => {
+        const {
+          result: {
+            current: { deleteQuote },
+          },
+        } = renderHook(() => useQuotes(), { wrapper: WrapperRealStore });
+
+        await deleteQuote(mockQuoteId);
+
+        expect(mockedDispatch).toHaveBeenCalledWith(
+          openModalActionCreator({
+            isError: true,
+            isOpen: true,
+            message: "You have to be logged in to do this action",
+          })
+        );
+      });
+    });
+
+    describe("And the user is logged in", () => {
+      describe("And when the delete method of the quotes repository should be called", () => {
+        const {
+          result: {
+            current: { deleteQuote: deleteMocked },
+          },
+        } = renderHook(() => useQuotes(), { wrapper: Wrapper });
+        test("Then if the method responds with an error the dispatch should be called with 'Couldn't delete the quote. Sorry :('", async () => {
+          axios.delete = jest.fn().mockRejectedValue(new Error());
+          const expectedActionPayload: Modal = {
+            isError: true,
+            isOpen: true,
+            message: "Couldn't delete the quote. Sorry :(",
+          };
+
+          await deleteMocked(mockQuoteId);
+
+          expect(mockedDispatch).toHaveBeenCalledWith(
+            openModalActionCreator(expectedActionPayload)
+          );
+        });
+      });
     });
   });
 });

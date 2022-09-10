@@ -71,6 +71,7 @@ const useQuotes = () => {
           message: "You have to be logged in to do this action",
         })
       );
+      return;
     }
     const quotesRepository = new QuotesRepository(url);
     const deleteResult = await quotesRepository.deleteQuote(
@@ -86,6 +87,7 @@ const useQuotes = () => {
           message: "Couldn't delete the quote. Sorry :(",
         })
       );
+      return;
     }
   };
   return { loadPublicQuotes, loadPrivateQuotes, deleteQuote };
