@@ -20,7 +20,7 @@ const handlers = [
     return res(ctx.status(200), ctx.json(responseRegister));
   }),
 
-  rest.get(`${url}/quotes/all-quotes`, async (req, res, ctx) => {
+  rest.get(`${url}/quotes/all-quotes`, async (_req, res, ctx) => {
     const response = [
       {
         author: "test",
@@ -32,7 +32,7 @@ const handlers = [
     return res.once(ctx.status(200), ctx.json(response));
   }),
 
-  rest.get(`${url}/quotes/all-quotes`, async (req, res, ctx) => {
+  rest.get(`${url}/quotes/all-quotes`, async (_req, res, ctx) => {
     const response = { status: 400, error: "error" };
     return res.once(ctx.status(response.status), ctx.json(response.error));
   }),
@@ -75,6 +75,14 @@ const handlers = [
         },
       })
     );
+  }),
+
+  rest.delete(`${url}/quotes/quote`, async (req, res, ctx) => {
+    const id = await req.url.searchParams.get("id");
+    if (id === "test bad ID") {
+      return res(ctx.status(400), ctx.json(new Error("Mock delete error")));
+    }
+    return res(ctx.status(200), ctx.json("mock delete correct"));
   }),
 ];
 
