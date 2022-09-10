@@ -2,6 +2,7 @@ import { renderHook } from "@testing-library/react";
 import axios from "axios";
 import { useAppDispatch } from "../../store/hooks";
 import {
+  deleteQuoteActionCreator,
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
 } from "../../store/quotes/quotesSlice";
@@ -168,11 +169,16 @@ describe("Given the deleteQuote function returned by the useQuotes hook", () => 
 
     describe("And the user is logged in", () => {
       describe("And when the delete method of the quotes repository should be called", () => {
+        afterEach(() => {
+          jest.clearAllMocks();
+        });
+
         const {
           result: {
             current: { deleteQuote: deleteMocked },
           },
         } = renderHook(() => useQuotes(), { wrapper: Wrapper });
+
         test("Then if the method responds with an error the dispatch should be called with 'Couldn't delete the quote. Sorry :('", async () => {
           axios.delete = jest.fn().mockRejectedValue(new Error());
           const expectedActionPayload: Modal = {
@@ -185,6 +191,16 @@ describe("Given the deleteQuote function returned by the useQuotes hook", () => 
 
           expect(mockedDispatch).toHaveBeenCalledWith(
             openModalActionCreator(expectedActionPayload)
+          );
+        });
+
+        test("And then if the method is successfull, the dispatch should be called with a delete action with the quote id as payload", async () => {
+          axios.delete = jest.fn().mockResolvedValue({ data: "mock success" });
+
+          await deleteMocked(mockQuoteId);
+
+          expect(mockedDispatch).toHaveBeenCalledWith(
+            deleteQuoteActionCreator(mockQuoteId)
           );
         });
       });

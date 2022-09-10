@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import QuotesRepository from "../../repositories/QuotesRepository/QuotesRepository";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
+  deleteQuoteActionCreator,
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
 } from "../../store/quotes/quotesSlice";
@@ -89,6 +90,7 @@ const useQuotes = () => {
       );
       return;
     }
+    dispatch(deleteQuoteActionCreator(quoteId));
   };
   return { loadPublicQuotes, loadPrivateQuotes, deleteQuote };
 };
