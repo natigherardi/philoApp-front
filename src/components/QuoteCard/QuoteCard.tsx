@@ -1,4 +1,5 @@
 import { Quote } from "../../types/Quote";
+import SmallButton from "../SmallButton/SmallButton";
 import QuoteCardStyled from "./QuoteCardStyled";
 
 interface QuoteCardProps {
@@ -21,6 +22,7 @@ const QuoteCard = ({
           height="150"
         />
       </div>
+      <SmallButton type="detail"></SmallButton>
     </QuoteCardStyled>
   );
 };
