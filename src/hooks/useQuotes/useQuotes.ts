@@ -74,7 +74,7 @@ const useQuotes = () => {
       );
       return;
     }
-    const quotesRepository = new QuotesRepository("http://localhost:4000");
+    const quotesRepository = new QuotesRepository(url);
     const deleteResult = await quotesRepository.deleteQuote(
       userId,
       token,

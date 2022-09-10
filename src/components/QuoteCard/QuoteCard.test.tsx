@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import Wrapper from "../../testUtils/Wrapper";
 import QuoteCard from "./QuoteCard";
 
 describe("Given a General Card component", () => {
@@ -10,7 +11,11 @@ describe("Given a General Card component", () => {
         image: "text image",
       };
 
-      render(<QuoteCard quote={quote} />);
+      render(
+        <Wrapper>
+          <QuoteCard quote={quote} isPrivate={false} />
+        </Wrapper>
+      );
 
       [
         screen.getByAltText(quote.author),

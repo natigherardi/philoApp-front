@@ -5,10 +5,12 @@ import QuoteCardStyled from "./QuoteCardStyled";
 
 interface QuoteCardProps {
   quote: Partial<Quote>;
+  isPrivate: boolean;
 }
 
 const QuoteCard = ({
   quote: { author, image, textContent, id },
+  isPrivate,
 }: QuoteCardProps): JSX.Element => {
   const { deleteQuote } = useQuotes();
 
@@ -29,7 +31,9 @@ const QuoteCard = ({
           height="150"
         />
       </div>
-      <SmallButton type="delete" onClick={handleDelete}></SmallButton>
+      {isPrivate && (
+        <SmallButton type="delete" onClick={handleDelete}></SmallButton>
+      )}
     </QuoteCardStyled>
   );
 };
