@@ -1,4 +1,3 @@
-import { Quote } from "../../types/Quote";
 import QuotesRepository from "./QuotesRepository";
 
 describe("Given a QuotesRepository class", () => {
