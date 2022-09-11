@@ -9,7 +9,7 @@ interface QuoteCardProps {
 }
 
 const QuoteCard = ({
-  quote: { author, image, textContent, id },
+  quote: { author, image, backUpImage, textContent, id },
   isPrivate,
 }: QuoteCardProps): JSX.Element => {
   const { deleteQuote } = useQuotes();
@@ -17,6 +17,7 @@ const QuoteCard = ({
   const handleDelete = () => {
     deleteQuote(id as string);
   };
+  const apiUrl = process.env.REACT_APP_API_URL as string;
 
   return (
     <QuoteCardStyled>
@@ -24,7 +25,11 @@ const QuoteCard = ({
       <span className="card__author">{author}</span>
       <div className="card__image-container">
         <img
-          src={image as string}
+          src={`${apiUrl}/${image}`}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = backUpImage as string;
+          }}
           alt={author}
           className="card__image"
           width="150"
