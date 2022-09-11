@@ -164,7 +164,7 @@ describe("Given the deleteQuote function returned by the useQuotes hook", () => 
     });
 
     describe("And the user is logged in", () => {
-      describe("And when the delete method of the quotes repository should be called", () => {
+      describe("And when the delete method of the quotes repository is called", () => {
         afterEach(() => {
           jest.clearAllMocks();
         });
@@ -198,6 +198,73 @@ describe("Given the deleteQuote function returned by the useQuotes hook", () => 
           expect(mockedDispatch).toHaveBeenCalledWith(
             deleteQuoteActionCreator(mockQuoteId)
           );
+        });
+      });
+    });
+  });
+});
+
+describe("Given the createQuote function returned by the useQuotes hook", () => {
+  describe("When it is called with a new quote", () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    const mockedNewQuote = new FormData();
+    describe("And the user is not logged in", () => {
+      test("Then the dispath should be called with an openModal action with message 'You have to be logged in to do this action'", async () => {
+        const {
+          result: {
+            current: { createQuote },
+          },
+        } = renderHook(() => useQuotes(), { wrapper: WrapperRealStore });
+
+        await createQuote(mockedNewQuote);
+
+        expect(mockedDispatch).toHaveBeenCalledWith(
+          openModalActionCreator({
+            isError: true,
+            isOpen: true,
+            message: "You have to be logged in to do this action",
+          })
+        );
+      });
+    });
+
+    describe("And when the user is logged in", () => {
+      const {
+        result: {
+          current: { createQuote },
+        },
+      } = renderHook(() => useQuotes(), { wrapper: Wrapper });
+
+      describe("And when the create method of the quotes repository's response is successfull", () => {
+        test("Then the dispatch should be called with a modal of success with text 'Quote created successfully!'", async () => {
+          axios.post = jest.fn().mockResolvedValue("ok");
+          const expectedAction = openModalActionCreator({
+            isError: false,
+            isOpen: true,
+            message: "Quote created successfully!",
+          });
+
+          await createQuote(mockedNewQuote);
+
+          expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
+        });
+      });
+
+      describe("And when the create method of the quotes repository's response is an error", () => {
+        test("Then the dispatch should be called with a modal of error with txt 'Couldn't create the quote. Sorry :('", async () => {
+          const expectedAction = openModalActionCreator({
+            isError: true,
+            isOpen: true,
+            message: "Couldn't create the quote. Sorry :(",
+          });
+          axios.post = jest.fn().mockRejectedValue(new Error());
+
+          await createQuote(mockedNewQuote);
+
+          expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
         });
       });
     });

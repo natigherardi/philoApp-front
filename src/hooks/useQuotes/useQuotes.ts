@@ -92,7 +92,43 @@ const useQuotes = () => {
     }
     dispatch(deleteQuoteActionCreator(quoteId));
   };
-  return { loadPublicQuotes, loadPrivateQuotes, deleteQuote };
+  const createQuote = async (quote: FormData) => {
+    if (!isLoggedIn) {
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          isOpen: true,
+          message: "You have to be logged in to do this action",
+        })
+      );
+      return;
+    }
+    const quotesRepository = new QuotesRepository(url);
+    const creationResult = await quotesRepository.createQuote(
+      quote,
+      token,
+      userId
+    );
+    if (creationResult instanceof Error) {
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          isOpen: true,
+          message: "Couldn't create the quote. Sorry :(",
+        })
+      );
+      return;
+    }
+    dispatch(
+      openModalActionCreator({
+        isError: false,
+        isOpen: true,
+        message: "Quote created successfully!",
+      })
+    );
+  };
+
+  return { loadPublicQuotes, loadPrivateQuotes, deleteQuote, createQuote };
 };
 
 export default useQuotes;

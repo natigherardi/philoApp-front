@@ -5,8 +5,9 @@ export type modalMessageType =
   | "Login failed"
   | "We couldn't load any quotes. Sorry :("
   | "You have to be logged in to do this action"
-  | "Couldn't delete the quote. Sorry :(";
-
+  | "Couldn't delete the quote. Sorry :("
+  | "Couldn't create the quote. Sorry :("
+  | "Quote created successfully!";
 export interface Modal {
   isOpen: boolean;
   isError: boolean;
