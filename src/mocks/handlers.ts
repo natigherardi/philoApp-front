@@ -84,6 +84,16 @@ const handlers = [
     }
     return res(ctx.status(200), ctx.json("mock delete correct"));
   }),
+
+  rest.post(`${url}/quotes/quote`, async (req, res, ctx) => {
+    const { status } = await req.json();
+    const response =
+      status === "ok"
+        ? { res: "Quote created", resStatus: 201 }
+        : { res: "Error creating quote", resStatus: 400 };
+
+    return res(ctx.status(response.resStatus), ctx.json(response.res));
+  }),
 ];
 
 export default handlers;
