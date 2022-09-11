@@ -52,12 +52,13 @@ class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
   createQuote = async (quote: FormData, token: string, userId: string) => {
     const reqConfig = {
       headers: { Authorization: `Bearer ${token}` },
-      data: { quote },
+
       params: { id: userId },
     };
     try {
       const response = await axios.post(
         `${this.apiUrl}/quotes/quote`,
+        quote,
         reqConfig
       );
       return response.data;

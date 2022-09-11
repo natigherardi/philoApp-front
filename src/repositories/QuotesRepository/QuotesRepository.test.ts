@@ -1,3 +1,4 @@
+import { Quote } from "../../types/Quote";
 import QuotesRepository from "./QuotesRepository";
 
 describe("Given a QuotesRepository class", () => {
@@ -130,6 +131,36 @@ describe("Given a QuotesRepository class", () => {
 
         expect(result).toBeInstanceOf(Error);
       });
+    });
+  });
+
+  describe("When the createQuote method is called and it receives a quote, a userId and the token", () => {
+    const quotesRepository = new QuotesRepository(url);
+    const mockToken = "123";
+    const mockNewQuote = new FormData();
+    test("Then if the API returns a successfull response it should return the received data", async () => {
+      const mockUserId = "ok";
+      const expectedReponse = "Quote created";
+
+      const response = await quotesRepository.createQuote(
+        mockNewQuote,
+        mockToken,
+        mockUserId
+      );
+
+      expect(response).toStrictEqual(expectedReponse);
+    });
+
+    test("And when the API returns an error response then it should return the error", async () => {
+      const mockUserId = "error";
+
+      const response = await quotesRepository.createQuote(
+        mockNewQuote,
+        mockToken,
+        mockUserId
+      );
+
+      expect(response).toBeInstanceOf(Error);
     });
   });
 });

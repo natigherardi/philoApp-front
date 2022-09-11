@@ -86,9 +86,9 @@ const handlers = [
   }),
 
   rest.post(`${url}/quotes/quote`, async (req, res, ctx) => {
-    const { status } = await req.json();
+    const idUser = await req.url.searchParams.get("id");
     const response =
-      status === "ok"
+      idUser === "ok"
         ? { res: "Quote created", resStatus: 201 }
         : { res: "Error creating quote", resStatus: 400 };
 
