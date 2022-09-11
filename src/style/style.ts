@@ -14,6 +14,7 @@ const docStyle = {
     large: "52px",
     medium: "28px",
     small: "24px",
+    xs: "20px",
   },
   fontWeight: {
     light: "300",
