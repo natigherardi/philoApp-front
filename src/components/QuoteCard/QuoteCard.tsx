@@ -25,7 +25,7 @@ const QuoteCard = ({
       <span className="card__author">{author}</span>
       <div className="card__image-container">
         <img
-          src={(process.env.REACT_APP_API_URL! + "/" + image) as string}
+          src={`${apiUrl}/${image}`}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
             currentTarget.src = backUpImage as string;
