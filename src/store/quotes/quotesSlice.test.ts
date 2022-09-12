@@ -3,6 +3,7 @@ import {
   deleteQuoteActionCreator,
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
+  loadQuoteDetailActionCreator,
   quotesReducer,
 } from "./quotesSlice";
 
@@ -86,6 +87,19 @@ describe("Given a quotes reducer", () => {
       );
 
       expect(privateQuotes).toStrictEqual(resultDelete);
+    });
+  });
+
+  describe("When it is called with a loadQuoteDetail action", () => {
+    test("Then it should return the detail quote received", () => {
+      const quoteDetails = loadedQuotes[0];
+
+      const { currentQuoteDetail } = quotesReducer(
+        previusQuotes,
+        loadQuoteDetailActionCreator(quoteDetails)
+      );
+
+      expect(currentQuoteDetail).toStrictEqual(quoteDetails);
     });
   });
 });
