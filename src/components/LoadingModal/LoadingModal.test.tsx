@@ -1,26 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import App from "../../App";
 import Wrapper from "../../testUtils/Wrapper";
-
-let mockedUseSelector = {};
-let mockedDispatch = jest.fn();
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockedUseSelector,
-  useDispatch: () => mockedDispatch,
-}));
+import LoadingModal from "./LoadingModal";
 
 describe("Guiven a loading modal", () => {
-  describe("When it's rendered and the page is loading", () => {
+  describe("When it's rendered", () => {
     test("Then it should show a spinner and a test 'Loading...", () => {
-      mockedUseSelector = {
-        modal: {},
-        isLoading: true,
-      };
-
       render(
         <Wrapper>
-          <App />
+          <LoadingModal />
         </Wrapper>
       );
 

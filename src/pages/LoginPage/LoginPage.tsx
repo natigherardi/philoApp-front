@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import Modal from "../../components/Modal/Modal";
 import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = (): JSX.Element => {
