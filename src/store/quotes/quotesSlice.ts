@@ -55,4 +55,5 @@ export const {
   loadPublicQuotes: loadPublicQuotesActionCreator,
   loadPrivateQuotes: loadPrivateQuotesActionCreator,
   deleteQuote: deleteQuoteActionCreator,
+  loadQuoteDetail: loadQuoteDetailActionCreator,
 } = quotesSlice.actions;
