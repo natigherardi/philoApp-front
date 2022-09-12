@@ -6,6 +6,7 @@ import { useAppSelector } from "./store/hooks";
 import LoadingModal from "./components/LoadingModal/LoadingModal";
 import HomePage from "./pages/HomePage/HomePage";
 import Modal from "./components/Modal/Modal";
+import CreateQuotePage from "./pages/CreateQuotePage/CreateQuotePage";
 
 function App() {
   const isLoading = useAppSelector((state) => state.ui.isLoading);
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/my-quotes" element={<HomePage />} />
+        <Route path="/create-quote" element={<CreateQuotePage />} />
       </Routes>
     </MainContainer>
   );
