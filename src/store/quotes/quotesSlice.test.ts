@@ -15,6 +15,11 @@ describe("Given a quotes reducer", () => {
         owner: "test previus quote",
         id: "test previus quote",
         textContent: "test previus quote",
+        backUpImage: "test backUp",
+        book: "test book",
+        favoritedBy: [],
+        school: "test school",
+        year: "1",
       },
     ],
     publicQuotes: [],
@@ -27,6 +32,11 @@ describe("Given a quotes reducer", () => {
       id: "test",
       textContent: "test",
       user: "test",
+      backUpImage: "test backUp",
+      book: "test book",
+      favoritedBy: [],
+      school: "test school",
+      year: "1",
     },
   ];
   describe("When it is called with a loadPublicQuotes action", () => {
