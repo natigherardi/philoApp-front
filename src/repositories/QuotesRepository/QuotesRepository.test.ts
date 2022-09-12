@@ -162,4 +162,25 @@ describe("Given a QuotesRepository class", () => {
       expect(response).toBeInstanceOf(Error);
     });
   });
+
+  describe("When the getQuoteById method is called with a quoteId", () => {
+    const quotesRepository = new QuotesRepository(url);
+    describe("And when the quoteId is valid", () => {
+      test("Then it should return the data received from the API", async () => {
+        const expectedResponse = "Quote by id";
+
+        const response = await quotesRepository.getQuoteById("mock-id");
+
+        expect(response).toStrictEqual(expectedResponse);
+      });
+    });
+
+    describe("And when the quoteId is invalid", () => {
+      test("Then it should return the error received by the API", async () => {
+        const response = await quotesRepository.getQuoteById("bad-req-mock");
+
+        expect(response).toBeInstanceOf(Error);
+      });
+    });
+  });
 });

@@ -94,6 +94,14 @@ const handlers = [
 
     return res(ctx.status(response.resStatus), ctx.json(response.res));
   }),
+
+  rest.get(`${url}/quotes/quote/mock-id`, async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json("Quote by id"));
+  }),
+
+  rest.get(`${url}/quotes/quote/bad-req-mock`, async (req, res, ctx) => {
+    return res(ctx.status(400));
+  }),
 ];
 
 export default handlers;
