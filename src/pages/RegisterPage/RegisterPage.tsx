@@ -14,7 +14,6 @@ const RegisterPage = (): JSX.Element => {
           favourite ones to your lists
         </p>
         <RegisterForm />
-        <Modal></Modal>
       </RegisterStyledPage>
     </>
   );

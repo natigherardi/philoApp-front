@@ -21,7 +21,6 @@ const LoginPage = (): JSX.Element => {
             </NavLink>
           </div>
         </div>
-        <Modal />
       </LoginPageStyled>
     </>
   );
