@@ -6,6 +6,8 @@ const QuoteFormStyled = styled.form`
   flex-direction: column;
   align-items: center;
   .form {
+    gap: 30px;
+
     &__fields-group {
       display: flex;
       flex-direction: column;
