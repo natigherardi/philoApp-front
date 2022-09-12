@@ -66,6 +66,17 @@ class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
       return error;
     }
   };
+
+  getQuoteById = async (quoteId: string) => {
+    try {
+      const response = await axios.get(
+        `${this.apiUrl}/quotes/quote/${quoteId}`
+      );
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 export default QuotesRepository;
