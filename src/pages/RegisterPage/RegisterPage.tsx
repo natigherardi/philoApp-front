@@ -1,7 +1,6 @@
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import Header from "../../components/Header/Header";
 import RegisterStyledPage from "./RegisterPageStyled";
-import Modal from "../../components/Modal/Modal";
 
 const RegisterPage = (): JSX.Element => {
   return (
@@ -14,7 +13,6 @@ const RegisterPage = (): JSX.Element => {
           favourite ones to your lists
         </p>
         <RegisterForm />
-        <Modal></Modal>
       </RegisterStyledPage>
     </>
   );

@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import { useAppSelector } from "./store/hooks";
 import LoadingModal from "./components/LoadingModal/LoadingModal";
 import HomePage from "./pages/HomePage/HomePage";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const isLoading = useAppSelector((state) => state.ui.isLoading);
@@ -12,15 +13,14 @@ function App() {
   return (
     <MainContainer>
       {isLoading && <LoadingModal />}
-      {!isLoading && (
-        <Routes>
-          <Route path="/" element={<Navigate to={"/home"} />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/my-quotes" element={<HomePage />} />
-        </Routes>
-      )}
+      <Modal />
+      <Routes>
+        <Route path="/" element={<Navigate to={"/home"} />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/my-quotes" element={<HomePage />} />
+      </Routes>
     </MainContainer>
   );
 }

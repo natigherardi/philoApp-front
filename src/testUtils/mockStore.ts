@@ -11,6 +11,11 @@ const mockQuotesInitialSate: QuotesStore = {
       image: "test url image",
       owner: "test owner",
       id: "12",
+      backUpImage: "test backUp",
+      book: "test book",
+      favoritedBy: [],
+      school: "test school",
+      year: "1",
     },
   ],
   privateQuotes: [
@@ -20,6 +25,11 @@ const mockQuotesInitialSate: QuotesStore = {
       image: "test url image",
       owner: "test owner",
       id: "12",
+      backUpImage: "test backUp",
+      book: "test book",
+      favoritedBy: [],
+      school: "test school",
+      year: "1",
     },
   ],
 };

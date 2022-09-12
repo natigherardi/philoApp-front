@@ -17,7 +17,6 @@ const QuoteCard = ({
   const handleDelete = () => {
     deleteQuote(id as string);
   };
-  const apiUrl = process.env.REACT_APP_API_URL as string;
 
   return (
     <QuoteCardStyled>
@@ -25,11 +24,7 @@ const QuoteCard = ({
       <span className="card__author">{author}</span>
       <div className="card__image-container">
         <img
-          src={`${apiUrl}/${image}`}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src = backUpImage as string;
-          }}
+          src={backUpImage}
           alt={author}
           className="card__image"
           width="150"
