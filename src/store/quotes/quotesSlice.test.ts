@@ -23,6 +23,18 @@ describe("Given a quotes reducer", () => {
       },
     ],
     publicQuotes: [],
+    currentQuoteDetail: {
+      author: "",
+      backUpImage: "",
+      book: "",
+      favoritedBy: [],
+      id: "",
+      image: "",
+      owner: "",
+      school: "",
+      textContent: "",
+      year: "",
+    },
   };
   const loadedQuotes = [
     {

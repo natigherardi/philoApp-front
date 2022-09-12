@@ -32,6 +32,18 @@ const mockQuotesInitialSate: QuotesStore = {
       year: "1",
     },
   ],
+  currentQuoteDetail: {
+    author: "",
+    backUpImage: "",
+    book: "",
+    favoritedBy: [],
+    id: "",
+    image: "",
+    owner: "",
+    school: "",
+    textContent: "",
+    year: "",
+  },
 };
 
 const mockUserInitialState = {
