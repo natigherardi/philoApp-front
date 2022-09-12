@@ -15,4 +15,5 @@ export interface Quote extends QuoteCreated {
 export interface QuotesStore {
   publicQuotes: Quote[];
   privateQuotes: Quote[];
+  currentQuoteDetail: Quote;
 }

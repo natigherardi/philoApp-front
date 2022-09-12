@@ -1,7 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Quote, QuotesStore } from "../../types/Quote";
 
-const quotesInitialSate: QuotesStore = { privateQuotes: [], publicQuotes: [] };
+const quotesInitialSate: QuotesStore = {
+  privateQuotes: [],
+  publicQuotes: [],
+  currentQuoteDetail: {
+    author: "",
+    backUpImage: "",
+    book: "",
+    favoritedBy: [],
+    id: "",
+    image: "",
+    owner: "",
+    school: "",
+    textContent: "",
+    year: "",
+  },
+};
 
 const quotesSlice = createSlice({
   name: "quotes",
@@ -24,6 +39,13 @@ const quotesSlice = createSlice({
         (quote) => quote.id !== action.payload
       ),
     }),
+    loadQuoteDetail: (
+      previusQuotes: QuotesStore,
+      action: PayloadAction<Quote>
+    ) => ({
+      ...previusQuotes,
+      currentQuoteDetail: action.payload,
+    }),
   },
 });
 
@@ -33,4 +55,5 @@ export const {
   loadPublicQuotes: loadPublicQuotesActionCreator,
   loadPrivateQuotes: loadPrivateQuotesActionCreator,
   deleteQuote: deleteQuoteActionCreator,
+  loadQuoteDetail: loadQuoteDetailActionCreator,
 } = quotesSlice.actions;

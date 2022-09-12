@@ -5,6 +5,7 @@ import {
   deleteQuoteActionCreator,
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
+  loadQuoteDetailActionCreator,
 } from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
 
@@ -128,7 +129,30 @@ const useQuotes = () => {
     );
   };
 
-  return { loadPublicQuotes, loadPrivateQuotes, deleteQuote, createQuote };
+  const getQuoteById = async (quoteId: string) => {
+    const quotesRepository = new QuotesRepository(url);
+    const quoteResult = await quotesRepository.getQuoteById(quoteId);
+    if (quoteResult instanceof Error) {
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          isOpen: true,
+          message: "Couldn't load the quote. Try again later",
+        })
+      );
+      return;
+    }
+
+    dispatch(loadQuoteDetailActionCreator(quoteResult));
+  };
+
+  return {
+    loadPublicQuotes,
+    loadPrivateQuotes,
+    deleteQuote,
+    createQuote,
+    getQuoteById,
+  };
 };
 
 export default useQuotes;
