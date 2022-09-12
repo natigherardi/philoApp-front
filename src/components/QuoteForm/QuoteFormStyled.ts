@@ -19,7 +19,7 @@ const QuoteFormStyled = styled.form`
     }
 
     &__field {
-      width: 335px;
+      width: 100%;
       height: 50px;
       font-size: ${docStyle.fontSize.xs};
       font-family: inherit;
