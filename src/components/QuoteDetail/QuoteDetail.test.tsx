@@ -14,7 +14,7 @@ describe("Given a Quote Detail component", () => {
     author: "test author",
     image: "test url image",
     owner: "test owner",
-    id: "12",
+    id: "mock",
     backUpImage: "url test",
     book: "test book",
     school: "test school",
@@ -24,7 +24,7 @@ describe("Given a Quote Detail component", () => {
     test("Then it should show an image, paragraph, a list of 3 items, a span and a link", () => {
       render(
         <Wrapper>
-          <QuoteDetail quote={quote} isPrivate={false} />
+          <QuoteDetail quote={quote} />
         </Wrapper>
       );
       const listItems = screen.getAllByRole("listitem");
@@ -46,7 +46,7 @@ describe("Given a Quote Detail component", () => {
     test("Then it should also show a button which when clicked should  call the delete quote function with the quote id", async () => {
       render(
         <Wrapper>
-          <QuoteDetail quote={quote} isPrivate={true} />
+          <QuoteDetail quote={quote} />
         </Wrapper>
       );
 

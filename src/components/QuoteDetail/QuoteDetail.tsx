@@ -1,18 +1,21 @@
 import { NavLink } from "react-router-dom";
 import useQuotes from "../../hooks/useQuotes/useQuotes";
+import { useAppSelector } from "../../store/hooks";
 import { Quote } from "../../types/Quote";
 import LargeButton from "../LargeButton/LargeButton";
 import QuoteDetailStyled from "./QuoteDetailStyled";
 
 interface QuoteDetailProps {
   quote: Partial<Quote>;
-  isPrivate: boolean;
 }
 
 const QuoteDetail = ({
-  isPrivate,
-  quote: { author, backUpImage, book, school, textContent, year, id },
+  quote: { author, backUpImage, book, school, textContent, year, id, owner },
 }: QuoteDetailProps): JSX.Element => {
+  const { id: userId } = useAppSelector((state) => state.userSession.userData);
+
+  const isPrivate = owner === userId;
+
   const { deleteQuote } = useQuotes();
 
   const handleDelete = () => {

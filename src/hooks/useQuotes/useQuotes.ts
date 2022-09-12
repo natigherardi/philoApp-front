@@ -98,6 +98,7 @@ const useQuotes = () => {
     }
     dispatch(deleteQuoteActionCreator(quoteId));
   };
+
   const createQuote = async (quote: FormData) => {
     if (!isLoggedIn) {
       dispatch(

@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import useQuotes from "../../hooks/useQuotes/useQuotes";
+import { useAppSelector } from "../../store/hooks";
 import { Quote } from "../../types/Quote";
 import SmallButton from "../SmallButton/SmallButton";
 import QuoteCardStyled from "./QuoteCardStyled";
@@ -9,14 +11,16 @@ interface QuoteCardProps {
 }
 
 const QuoteCard = ({
-  quote: { author, backUpImage, textContent, id },
-  isPrivate,
+  quote: { author, backUpImage, textContent, id, owner },
 }: QuoteCardProps): JSX.Element => {
   const { deleteQuote } = useQuotes();
-
+  const { id: userId } = useAppSelector((state) => state.userSession.userData);
   const handleDelete = () => {
     deleteQuote(id as string);
   };
+  const isPrivate = owner === userId;
+
+  const navigate = useNavigate();
 
   return (
     <QuoteCardStyled>
@@ -31,6 +35,10 @@ const QuoteCard = ({
           height="150"
         />
       </div>
+      <SmallButton
+        type="detail"
+        onClick={() => navigate(`/quote/${id}`)}
+      ></SmallButton>
       {isPrivate && (
         <SmallButton type="delete" onClick={handleDelete}></SmallButton>
       )}
