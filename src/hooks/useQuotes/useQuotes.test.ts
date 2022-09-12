@@ -4,6 +4,7 @@ import {
   deleteQuoteActionCreator,
   loadPrivateQuotesActionCreator,
   loadPublicQuotesActionCreator,
+  loadQuoteDetailActionCreator,
 } from "../../store/quotes/quotesSlice";
 import { openModalActionCreator } from "../../store/ui/uiSlice";
 import Wrapper from "../../testUtils/Wrapper";
@@ -284,6 +285,56 @@ describe("Given the createQuote function returned by the useQuotes hook", () => 
 
           expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
         });
+      });
+    });
+  });
+});
+
+describe("Given the getQuoteById function returned by the useQuotes hook", () => {
+  describe("When it's invoked and it receives a quoteId", () => {
+    const {
+      result: {
+        current: { getQuoteById },
+      },
+    } = renderHook(() => useQuotes(), { wrapper: Wrapper });
+    const mockId = "test-id";
+
+    describe("And when the getQuoteById mehtod of the repository returns the detailed quote", () => {
+      test("Then the dispatch should be called with a load quote detail action that as payload has the quote details", async () => {
+        const mockQuoteDetail = {
+          author: "test previus quote",
+          image: "test previus quote",
+          owner: "test previus quote",
+          id: "test previus quote",
+          textContent: "test previus quote",
+          backUpImage: "test backUp",
+          book: "test book",
+          favoritedBy: [],
+          school: "test school",
+          year: "1",
+        };
+        axios.get = jest.fn().mockResolvedValue({ data: mockQuoteDetail });
+
+        await getQuoteById(mockId);
+
+        expect(mockedDispatch).toHaveBeenCalledWith(
+          loadQuoteDetailActionCreator(mockQuoteDetail)
+        );
+      });
+    });
+
+    describe("And when the getQuoteById mehtod of the repository returns an error", () => {
+      test("Then the dispatch should be called with an open modal action with modal's message 'Couldn't load the quote. Try again later'", async () => {
+        axios.get = jest.fn().mockRejectedValue(new Error());
+        const expectedAction = openModalActionCreator({
+          isError: true,
+          isOpen: true,
+          message: "Couldn't load the quote. Try again later",
+        });
+
+        await getQuoteById(mockId);
+
+        expect(mockedDispatch).toHaveBeenCalledWith(expectedAction);
       });
     });
   });
