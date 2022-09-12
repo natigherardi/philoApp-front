@@ -174,5 +174,13 @@ describe("Given a QuotesRepository class", () => {
         expect(response).toStrictEqual(expectedResponse);
       });
     });
+
+    describe("And when the quoteId is invalid", () => {
+      test("Then it should return the error received by the API", async () => {
+        const response = await quotesRepository.getQuoteById("bad-req-mock");
+
+        expect(response).toBeInstanceOf(Error);
+      });
+    });
   });
 });
