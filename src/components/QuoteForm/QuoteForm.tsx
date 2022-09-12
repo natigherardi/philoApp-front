@@ -52,11 +52,11 @@ const QuoteForm = (): JSX.Element => {
     <>
       <QuoteFormStyled onSubmit={handleSubmit} data-testid="form-register">
         <div className="form__fields-group">
-          <label htmlFor="text-content" className="form__label">
+          <label htmlFor="textContent" className="form__label">
             Quote
           </label>
           <textarea
-            id="text-content"
+            id="textContent"
             cols={30}
             rows={10}
             className="form__field form__field--big"
@@ -70,9 +70,7 @@ const QuoteForm = (): JSX.Element => {
             className="form__field"
             onChange={handleChangeSelect}
           >
-            <option hidden selected>
-              Choose an author
-            </option>
+            <option hidden>Choose an author</option>
             {listOfAuthors.map((author) => (
               <option value={author}>{author}</option>
             ))}
