@@ -9,7 +9,7 @@ interface QuoteCardProps {
 }
 
 const QuoteCard = ({
-  quote: { author, image, backUpImage, textContent, id },
+  quote: { author, backUpImage, textContent, id },
   isPrivate,
 }: QuoteCardProps): JSX.Element => {
   const { deleteQuote } = useQuotes();
