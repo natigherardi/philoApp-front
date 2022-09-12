@@ -34,9 +34,15 @@ const QuoteDetail = ({
       <span className="quote-detail__author">{author}</span>
       <div className="quote-detail__group-container">
         <ul className="quote-detail__group">
-          <li className="quote-detail__item">Year: {year}</li>
-          <li className="quote-detail__item">School: {school}</li>
-          <li className="quote-detail__item">Book: {book}</li>
+          <li className="quote-detail__item" key="year">
+            Year: {year}
+          </li>
+          <li className="quote-detail__item" key="school">
+            School: {school}
+          </li>
+          <li className="quote-detail__item" key="book">
+            Book: {book}
+          </li>
         </ul>
         <NavLink to={"/pageNotFound"} className="quote-detail__link">
           More from {author}
