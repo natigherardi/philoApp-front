@@ -19,15 +19,12 @@ const QuoteForm = (): JSX.Element => {
 
   const { createQuote } = useQuotes();
 
-  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuoteData({ ...quoteData, [event.target.id]: event.target.value });
-  };
-
-  const handleChangeQuote = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setQuoteData({ ...quoteData, [event.target.id]: event.target.value });
-  };
-
-  const handleChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeSelect = (
+    event:
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLInputElement>
+  ) => {
     setQuoteData({ ...quoteData, [event.target.id]: event.target.value });
   };
 
@@ -50,7 +47,7 @@ const QuoteForm = (): JSX.Element => {
 
   return (
     <>
-      <QuoteFormStyled onSubmit={handleSubmit} data-testid="form-register">
+      <QuoteFormStyled onSubmit={handleSubmit} data-testid="form-quote">
         <div className="form__fields-group">
           <label htmlFor="textContent" className="form__label">
             Quote
@@ -60,9 +57,9 @@ const QuoteForm = (): JSX.Element => {
             cols={30}
             rows={10}
             className="form__field form__field--big"
-            onChange={handleChangeQuote}
+            onChange={handleChangeSelect}
           ></textarea>
-          <label htmlFor="philosopher" className="form__label">
+          <label htmlFor="author" className="form__label">
             Philosopher
           </label>
           <select
@@ -70,7 +67,7 @@ const QuoteForm = (): JSX.Element => {
             className="form__field"
             onChange={handleChangeSelect}
           >
-            <option hidden>Choose an author</option>
+            <option hidden>Choose a philosopher</option>
             {listOfAuthors.map((author) => (
               <option value={author}>{author}</option>
             ))}
@@ -82,7 +79,7 @@ const QuoteForm = (): JSX.Element => {
             type="number"
             id="year"
             className="form__field form__field--small"
-            onChange={handleChangeText}
+            onChange={handleChangeSelect}
           />
           <label htmlFor="school" className="form__label">
             School
@@ -91,7 +88,7 @@ const QuoteForm = (): JSX.Element => {
             type="text"
             id="school"
             className="form__field"
-            onChange={handleChangeText}
+            onChange={handleChangeSelect}
           />
           <label htmlFor="book" className="form__label">
             Book
@@ -100,7 +97,7 @@ const QuoteForm = (): JSX.Element => {
             type="text"
             id="book"
             className="form__field"
-            onChange={handleChangeText}
+            onChange={handleChangeSelect}
           />
           <label htmlFor="image" className="form__label">
             Image
