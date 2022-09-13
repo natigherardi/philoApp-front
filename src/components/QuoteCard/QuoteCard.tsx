@@ -25,22 +25,24 @@ const QuoteCard = ({
     <QuoteCardStyled>
       <p className="card__text">{textContent}</p>
       <span className="card__author">{author}</span>
-      <div className="card__image-container">
-        <img
-          src={backUpImage}
-          alt={author}
-          className="card__image"
-          width="150"
-          height="150"
-        />
+      <div className="card__buttons-img-container">
+        <div className="card__image-container">
+          <img
+            src={backUpImage}
+            alt={author}
+            className="card__image"
+            width="150"
+            height="150"
+          />
+        </div>
+        <SmallButton
+          type="detail"
+          onClick={() => navigate(`/quote/${id}`)}
+        ></SmallButton>
+        {isPrivate && (
+          <SmallButton type="delete" onClick={handleDelete}></SmallButton>
+        )}
       </div>
-      <SmallButton
-        type="detail"
-        onClick={() => navigate(`/quote/${id}`)}
-      ></SmallButton>
-      {isPrivate && (
-        <SmallButton type="delete" onClick={handleDelete}></SmallButton>
-      )}
     </QuoteCardStyled>
   );
 };

@@ -30,7 +30,14 @@ const QuoteCardStyled = styled.div`
         display: flex;
         align-self: flex-end;
         border-radius: 50%;
+        margin: 0 20px;
       }
+    }
+    &__buttons-img-container {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-around;
     }
   }
 `;
