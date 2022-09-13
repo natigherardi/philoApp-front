@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import Modal from "./components/Modal/Modal";
 import CreateQuotePage from "./pages/CreateQuotePage/CreateQuotePage";
 import QuoteDetailPage from "./pages/QuoteDetailPage/QuoteDetailPage";
+import MyQuotesPage from "./pages/MyQuotesPage/MyQuotesPage";
 
 function App() {
   const isLoading = useAppSelector((state) => state.ui.isLoading);
@@ -21,7 +22,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/my-quotes" element={<HomePage />} />
+        <Route path="/my-quotes" element={<MyQuotesPage />} />
         <Route path="/create-quote" element={<CreateQuotePage />} />
         <Route path="/quote/:id" element={<QuoteDetailPage />} />
       </Routes>
