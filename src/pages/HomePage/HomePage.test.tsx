@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react";
 import Wrapper from "../../testUtils/Wrapper";
 import HomePage from "./HomePage";
 
+jest.mock("../../hooks/useQuotes/useQuotes", () => () => ({
+  loadPublicQuotes: () => jest.fn().mockReturnValue([]),
+}));
+
 describe("Given the HomePage page", () => {
   describe("When rendered", () => {
     test("Then it should show a header, a title and a quotes list", () => {
