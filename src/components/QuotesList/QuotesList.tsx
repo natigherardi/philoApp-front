@@ -1,7 +1,3 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import useQuotes from "../../hooks/useQuotes/useQuotes";
-import { useAppSelector } from "../../store/hooks";
 import { Quote } from "../../types/Quote";
 import QuoteCard from "../QuoteCard/QuoteCard";
 import QuotesListStyled from "./QuotesListStyled";
