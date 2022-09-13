@@ -52,7 +52,6 @@ class QuotesRepository<T extends Item> implements IQuotesRepository<T> {
   createQuote = async (quote: FormData, token: string, userId: string) => {
     const reqConfig = {
       headers: { Authorization: `Bearer ${token}` },
-
       params: { id: userId },
     };
     try {
