@@ -47,7 +47,7 @@ const QuoteDetail = ({
             Book: {book}
           </li>
         </ul>
-        <NavLink to={"/pageNotFound"} className="quote-detail__link">
+        <NavLink to={"/not-found"} className="quote-detail__link">
           More from {author}
         </NavLink>
       </div>

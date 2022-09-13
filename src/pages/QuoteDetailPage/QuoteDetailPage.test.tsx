@@ -6,6 +6,21 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => "test-details-id",
 }));
+const mockQuote = {
+  author: "",
+  backUpImage: "",
+  book: "",
+  favoritedBy: [],
+  id: "test-details-id",
+  image: "",
+  owner: "",
+  school: "",
+  textContent: "test detail",
+  year: "",
+};
+jest.mock("../../hooks/useQuotes/useQuotes", () => () => ({
+  getQuoteById: jest.fn().mockResolvedValue(mockQuote),
+}));
 
 describe("Given a QUote detail page", () => {
   describe("When rendered", () => {
