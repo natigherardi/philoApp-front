@@ -3,7 +3,7 @@ import LargeButtonStyled from "./LargeButtonStyled";
 interface LargeButtonProps {
   text: string;
   actionOnClick?: () => void;
-  type: string;
+  type?: string;
 }
 
 const LargeButton = ({

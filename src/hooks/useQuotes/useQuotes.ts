@@ -7,7 +7,10 @@ import {
   loadPublicQuotesActionCreator,
   loadQuoteDetailActionCreator,
 } from "../../store/quotes/quotesSlice";
-import { openModalActionCreator } from "../../store/ui/uiSlice";
+import {
+  openModalActionCreator,
+  toggleLoadingModalActionCreator,
+} from "../../store/ui/uiSlice";
 
 const useQuotes = () => {
   const url = process.env.REACT_APP_API_URL as string;
@@ -18,6 +21,7 @@ const useQuotes = () => {
   } = useAppSelector((state) => state.userSession);
 
   const loadPublicQuotes = useCallback(async () => {
+    dispatch(toggleLoadingModalActionCreator());
     const quotesRepository = new QuotesRepository(url);
     const quotesData = await quotesRepository.getAllQuotes();
     if (quotesData instanceof Error) {
@@ -36,6 +40,7 @@ const useQuotes = () => {
     } = quotesData;
 
     dispatch(loadPublicQuotesActionCreator(publicQuotes));
+    dispatch(toggleLoadingModalActionCreator());
   }, [url, dispatch]);
 
   const loadPrivateQuotes = useCallback(
@@ -93,6 +98,7 @@ const useQuotes = () => {
     }
     dispatch(deleteQuoteActionCreator(quoteId));
   };
+
   const createQuote = async (quote: FormData) => {
     if (!isLoggedIn) {
       dispatch(
@@ -129,22 +135,27 @@ const useQuotes = () => {
     );
   };
 
-  const getQuoteById = async (quoteId: string) => {
-    const quotesRepository = new QuotesRepository(url);
-    const quoteResult = await quotesRepository.getQuoteById(quoteId);
-    if (quoteResult instanceof Error) {
-      dispatch(
-        openModalActionCreator({
-          isError: true,
-          isOpen: true,
-          message: "Couldn't load the quote. Try again later",
-        })
-      );
-      return;
-    }
-
-    dispatch(loadQuoteDetailActionCreator(quoteResult));
-  };
+  const getQuoteById = useCallback(
+    async (quoteId: string) => {
+      dispatch(toggleLoadingModalActionCreator());
+      const quotesRepository = new QuotesRepository(url);
+      const quoteResult = await quotesRepository.getQuoteById(quoteId);
+      if (quoteResult instanceof Error) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            isOpen: true,
+            message: "Couldn't load the quote. Try again later",
+          })
+        );
+        return;
+      }
+      dispatch(loadQuoteDetailActionCreator(quoteResult));
+      dispatch(toggleLoadingModalActionCreator());
+      return quoteResult;
+    },
+    [url, dispatch]
+  );
 
   return {
     loadPublicQuotes,

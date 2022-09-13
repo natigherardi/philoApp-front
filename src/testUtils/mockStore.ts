@@ -37,17 +37,17 @@ const mockQuotesInitialSate: QuotesStore = {
     backUpImage: "",
     book: "",
     favoritedBy: [],
-    id: "",
+    id: "test-details-id",
     image: "",
     owner: "",
     school: "",
-    textContent: "",
+    textContent: "test detail",
     year: "",
   },
 };
 
 const mockUserInitialState = {
-  userData: { id: "mock", username: "mock", token: "mock" },
+  userData: { id: "test user id", username: "mock", token: "mock" },
   isLoggedIn: true,
 };
 
