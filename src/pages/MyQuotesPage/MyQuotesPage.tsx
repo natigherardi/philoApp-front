@@ -1,14 +1,14 @@
 import Header from "../../components/Header/Header";
 import QuotesList from "../../components/QuotesList/QuotesList";
 
-const HomePage = (): JSX.Element => {
+const MyQuotesPage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <h1>All Quotes</h1>
+      <h1>My Quotes</h1>
       <QuotesList />
     </>
   );
 };
 
-export default HomePage;
+export default MyQuotesPage;

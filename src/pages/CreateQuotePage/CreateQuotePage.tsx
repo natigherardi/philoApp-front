@@ -7,7 +7,7 @@ const CreateQuotePage = (): JSX.Element => {
     <>
       <Header />
       <CreateQuotePageStyled>
-        <h2 className="create-quote-page__title">Create your own quote</h2>
+        <h1>Create your own quote</h1>
         <QuoteForm />
       </CreateQuotePageStyled>
     </>

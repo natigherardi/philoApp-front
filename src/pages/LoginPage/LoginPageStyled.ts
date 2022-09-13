@@ -6,13 +6,6 @@ const LoginPageStyled = styled.section`
   border-radius: ${docStyle.borderRadius.medium};
   padding: ${docStyle.padding.medium};
   .login-page {
-    &__title {
-      font-weight: ${docStyle.fontWeight.bold};
-      font-size: ${docStyle.fontSize.large};
-      color: ${docStyle.colors.TypographyColor};
-      margin: 10px;
-    }
-
     &__form-container {
       background-color: ${docStyle.colors.primaryColor};
       border-radius: ${docStyle.borderRadius.medium};

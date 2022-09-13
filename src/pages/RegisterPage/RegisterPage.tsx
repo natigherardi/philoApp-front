@@ -7,7 +7,7 @@ const RegisterPage = (): JSX.Element => {
     <>
       <Header />
       <RegisterStyledPage>
-        <h2 className="register-page__title">Register</h2>
+        <h1>Register</h1>
         <p className="register-page__description">
           Registration will allow you to create your own quotes and add your
           favourite ones to your lists
