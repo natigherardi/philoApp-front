@@ -11,7 +11,7 @@ interface SmallButtonProps {
 const SmallButton = ({ type, onClick }: SmallButtonProps): JSX.Element => {
   return (
     <>
-      <SmallButtonStyled onClick={onClick}>
+      <SmallButtonStyled aria-label={`${type}`} onClick={onClick}>
         {type === "delete" ? (
           <FontAwesomeIcon icon={faTrash} />
         ) : (
