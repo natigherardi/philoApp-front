@@ -1,5 +1,5 @@
 import { slide as BurgerMenu } from "react-burger-menu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useQuotes from "../../hooks/useQuotes/useQuotes";
 import { useUserSession } from "../../hooks/useUserSession/useUserSession";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -17,15 +17,30 @@ const Menu = (): JSX.Element => {
   return (
     <BurgerMenu right noOverlay>
       <NavLink to={"/home"}>Home</NavLink>
-      <NavLink to={"/my-quotes"}>MyQuotes</NavLink>
-      <NavLink to={"/create-quote"}>Create a quote</NavLink>
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <>
-          <NavLink to={"/register"}>Register</NavLink>
-          <NavLink to={"/login"}>Log In</NavLink>
+          <NavLink to={"/my-quotes"} className="bm-item">
+            MyQuotes
+          </NavLink>
+          <NavLink to={"/create-quote"} className="bm-item">
+            Create a quote
+          </NavLink>
+          <NavLink to={"/login"} onClick={handleLogOut} className="bm-item">
+            Log Out
+          </NavLink>
         </>
       )}
-      <span onClick={handleLogOut}>Log Out</span>
+
+      {!isLoggedIn && (
+        <>
+          <NavLink to={"/register"} className="bm-item">
+            Register
+          </NavLink>
+          <NavLink to={"/login"} className="bm-item">
+            Log In
+          </NavLink>
+        </>
+      )}
     </BurgerMenu>
   );
 };
