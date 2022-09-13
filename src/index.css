@@ -8,3 +8,9 @@ body {
   font-weight: 300;
   color: style;
 }
+h1 {
+  font-weight: 400;
+  font-size: 48px;
+  color: #1f1f1f;
+  margin: 10px;
+}

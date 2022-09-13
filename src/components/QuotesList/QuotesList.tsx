@@ -27,9 +27,6 @@ const QuotesList = (): JSX.Element => {
   let quotesToRender = pathname === "/home" ? publicQuotes : privateQuotes;
   return (
     <QuotesListStyled>
-      <h1 className="quotes-page__title">
-        {quotesToRender === publicQuotes ? `All Quotes` : `My Quotes`}
-      </h1>
       {quotesToRender.map((quote) => (
         <li key={quote.id}>
           <QuoteCard quote={quote} />

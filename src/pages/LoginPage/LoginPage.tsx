@@ -8,7 +8,7 @@ const LoginPage = (): JSX.Element => {
     <>
       <Header />
       <LoginPageStyled>
-        <h2 className="login-page__title">Log In</h2>
+        <h1>Log In</h1>
         <div className="login-page__form-container">
           <LoginForm />
           <div className="login-page__register-offer">
