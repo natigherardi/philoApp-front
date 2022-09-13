@@ -37,11 +37,11 @@ const mockQuotesInitialSate: QuotesStore = {
     backUpImage: "",
     book: "",
     favoritedBy: [],
-    id: "",
+    id: "test-details-id",
     image: "",
     owner: "",
     school: "",
-    textContent: "",
+    textContent: "test detail",
     year: "",
   },
 };
