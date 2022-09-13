@@ -1,7 +1,5 @@
 import { slide as BurgerMenu } from "react-burger-menu";
-import { NavLink, useNavigate } from "react-router-dom";
-import useQuotes from "../../hooks/useQuotes/useQuotes";
-import { useUserSession } from "../../hooks/useUserSession/useUserSession";
+import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { logoutUserActionCreator } from "../../store/user/userSessionSlice";
 import "./menu.css";
