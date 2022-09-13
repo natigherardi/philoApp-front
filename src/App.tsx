@@ -9,6 +9,7 @@ import Modal from "./components/Modal/Modal";
 import CreateQuotePage from "./pages/CreateQuotePage/CreateQuotePage";
 import QuoteDetailPage from "./pages/QuoteDetailPage/QuoteDetailPage";
 import MyQuotesPage from "./pages/MyQuotesPage/MyQuotesPage";
+import FilterPage from "./pages/FilterPage/FilterPage";
 
 function App() {
   const isLoading = useAppSelector((state) => state.ui.isLoading);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/my-quotes" element={<MyQuotesPage />} />
         <Route path="/create-quote" element={<CreateQuotePage />} />
         <Route path="/quote/:id" element={<QuoteDetailPage />} />
+        <Route path="/quote-filter/:author" element={<FilterPage />} />
       </Routes>
     </MainContainer>
   );
