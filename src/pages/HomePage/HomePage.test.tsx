@@ -4,7 +4,7 @@ import HomePage from "./HomePage";
 
 describe("Given the HomePage page", () => {
   describe("When rendered", () => {
-    test("Then it should show a header and a quote Detail component", () => {
+    test("Then it should show a header, a title and a quotes list", () => {
       render(
         <Wrapper>
           <HomePage />
