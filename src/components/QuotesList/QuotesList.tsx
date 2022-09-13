@@ -32,10 +32,7 @@ const QuotesList = (): JSX.Element => {
       </h1>
       {quotesToRender.map((quote) => (
         <li key={quote.id}>
-          <QuoteCard
-            quote={quote}
-            isPrivate={pathname === "/home" ? false : true}
-          />
+          <QuoteCard quote={quote} />
         </li>
       ))}
     </QuotesListStyled>

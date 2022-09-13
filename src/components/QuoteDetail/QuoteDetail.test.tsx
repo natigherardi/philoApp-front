@@ -13,7 +13,7 @@ describe("Given a Quote Detail component", () => {
     textContent: "test text",
     author: "test author",
     image: "test url image",
-    owner: "test owner",
+    owner: "test user id",
     id: "mock",
     backUpImage: "url test",
     book: "test book",

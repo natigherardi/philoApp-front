@@ -13,6 +13,7 @@ describe("Given a Quote Card component", () => {
   const quote = {
     textContent: "test text",
     author: "test",
+    owner: "test user id",
     image: "text image",
     id: mockQuoteId,
   };
@@ -20,7 +21,7 @@ describe("Given a Quote Card component", () => {
     test("Then it should show a paragraph with the text received", () => {
       render(
         <Wrapper>
-          <QuoteCard quote={quote} isPrivate={false} />
+          <QuoteCard quote={quote} />
         </Wrapper>
       );
 
@@ -38,11 +39,11 @@ describe("Given a Quote Card component", () => {
     test("Then it should also show a button which when clicked should  call the delete quote function with the quote id", async () => {
       render(
         <Wrapper>
-          <QuoteCard quote={quote} isPrivate={true} />
+          <QuoteCard quote={quote} />
         </Wrapper>
       );
 
-      const button = screen.getByRole("button");
+      const button = screen.getAllByRole("button")[1];
       await userEvent.click(button);
 
       await waitFor(() => {

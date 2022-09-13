@@ -47,7 +47,7 @@ const mockQuotesInitialSate: QuotesStore = {
 };
 
 const mockUserInitialState = {
-  userData: { id: "mock", username: "mock", token: "mock" },
+  userData: { id: "test user id", username: "mock", token: "mock" },
   isLoggedIn: true,
 };
 

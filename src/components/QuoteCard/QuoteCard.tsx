@@ -7,7 +7,6 @@ import QuoteCardStyled from "./QuoteCardStyled";
 
 interface QuoteCardProps {
   quote: Partial<Quote>;
-  isPrivate: boolean;
 }
 
 const QuoteCard = ({
