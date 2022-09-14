@@ -10,7 +10,9 @@ const Search = (): JSX.Element => {
 
   return (
     <>
-      <label htmlFor="author">Testing</label>
+      <label htmlFor="author" hidden>
+        Choose author
+      </label>
       <SearchStyled
         id="author"
         onChange={handleSelect}
