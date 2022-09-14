@@ -52,7 +52,7 @@ const mockUserInitialState = {
 };
 
 const mockUiInitialState: UiData = {
-  isLoading: false,
+  isLoading: true,
   modal: { isError: false, isOpen: true, message: "no message" },
 };
 
