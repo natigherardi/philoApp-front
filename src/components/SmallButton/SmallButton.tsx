@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import SmallButtonStyled from "./SmallButtonStyled";
 
 interface SmallButtonProps {
