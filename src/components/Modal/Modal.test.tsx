@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { closeModalActionCreator } from "../../store/ui/uiSlice";
 import Wrapper from "../../testUtils/Wrapper";
+import WrapperRealStore from "../../testUtils/WrapperActualStore";
 import Modal from "./Modal";
 
 let mockedUseSelector = {};
@@ -15,6 +16,7 @@ describe("Given a modal", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+
   describe("When it's rendered and there is an error", () => {
     test("Then it should show 'Error ꭗ' and the message of the error", () => {
       mockedUseSelector = {
@@ -99,7 +101,7 @@ describe("Given a modal", () => {
     expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
   });
 
-  describe("And when the suer clicks on the close button", () => {
+  describe("And when the user clicks on the close button", () => {
     test("Then the dispatch should be called ith an action to close the modal", async () => {
       render(
         <Wrapper>
@@ -111,6 +113,30 @@ describe("Given a modal", () => {
       await fireEvent.click(closeButton);
 
       expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
+    });
+  });
+
+  describe("And when the isOpen property of UIData store branch is false", () => {
+    test("Then the modal shouldn't be in the document", () => {
+      mockedUseSelector = {
+        modal: {
+          isError: false,
+          isOpen: false,
+          message: "no message",
+        },
+      };
+      const errorMessage = screen.queryByText("Error ꭗ");
+      const successMessage = screen.queryByText("Success ✓");
+
+      render(
+        <WrapperRealStore>
+          <Modal />
+        </WrapperRealStore>
+      );
+
+      expect(mockedDispatch).not.toHaveBeenCalled();
+      expect(errorMessage).not.toBeInTheDocument();
+      expect(successMessage).not.toBeInTheDocument();
     });
   });
 });
