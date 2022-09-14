@@ -1,13 +1,13 @@
 const listOfAuthors = [
   "Aristotle",
-  "Michael Foucault",
+  "Foucault",
   "Plato",
-  "Karl Marx",
-  "John Locke",
+  "Marx",
+  "Locke",
   "Conficius",
-  "Immanuel Kant",
+  "Kant",
   "Epicurus",
-  "Friedrich Nietzshe",
+  "Nietzshe",
 ];
 
 export default listOfAuthors;

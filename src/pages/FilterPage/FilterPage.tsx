@@ -1,29 +1,36 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import QuotesList from "../../components/QuotesList/QuotesList";
-import Search from "../../components/Search/Search";
 import useQuotes from "../../hooks/useQuotes/useQuotes";
 import { useAppSelector } from "../../store/hooks";
 
-const HomePage = (): JSX.Element => {
+const FilterPage = (): JSX.Element => {
+  debugger;
   const { publicQuotes } = useAppSelector((state) => state.quotes);
 
   const { loadPublicQuotes } = useQuotes();
+
+  const { author } = useParams();
 
   useEffect(() => {
     (async () => {
       await loadPublicQuotes();
     })();
   }, [loadPublicQuotes]);
+  debugger;
+
+  const quotesFiltered = publicQuotes.filter(
+    (quote) => quote.author === author
+  );
 
   return (
     <>
       <Header />
-      <Search></Search>
-      <h1>All Quotes</h1>
-      <QuotesList quotesToRender={publicQuotes} />
+      <h1>Quotes by {author}</h1>
+      <QuotesList quotesToRender={quotesFiltered}></QuotesList>
     </>
   );
 };
 
-export default HomePage;
+export default FilterPage;
