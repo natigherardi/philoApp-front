@@ -30,6 +30,7 @@ describe("Given a QUote detail page", () => {
           <QuoteDetailPage />
         </Wrapper>
       );
+
       const header = screen.getByAltText("philoApp-logo");
       const quoteDetail = screen.getByText("test detail");
 
