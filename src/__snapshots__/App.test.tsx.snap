@@ -5,6 +5,22 @@ exports[`Given the app component When rendered Then it should always match this 
   className="sc-bczRLJ jYHDTx"
 >
   <div
+    className="sc-ftvSup gSpWWZ"
+  >
+    <div
+      className="loading__container"
+    >
+      <span
+        className="loading__description"
+      >
+        Loading...
+      </span>
+      <div
+        className="sc-iBkjds kMDvTv"
+      />
+    </div>
+  </div>
+  <div
     className="sc-crXcEl kEztYC"
   >
     <svg

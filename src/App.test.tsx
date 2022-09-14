@@ -10,7 +10,6 @@ describe("Given the app component", () => {
           <App />
         </Wrapper>
       );
-
       expect(expectedApp).toMatchSnapshot();
     });
   });
