@@ -7,7 +7,7 @@ const mockQuotesInitialSate: QuotesStore = {
   publicQuotes: [
     {
       textContent: "test text",
-      author: "test author",
+      author: "test-author",
       image: "test url image",
       owner: "test owner",
       id: "12",

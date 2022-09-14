@@ -6,6 +6,7 @@ import useQuotes from "../../hooks/useQuotes/useQuotes";
 import { useAppSelector } from "../../store/hooks";
 
 const FilterPage = (): JSX.Element => {
+  debugger;
   const { publicQuotes } = useAppSelector((state) => state.quotes);
 
   const { loadPublicQuotes } = useQuotes();
@@ -17,6 +18,7 @@ const FilterPage = (): JSX.Element => {
       await loadPublicQuotes();
     })();
   }, [loadPublicQuotes]);
+  debugger;
 
   const quotesFiltered = publicQuotes.filter(
     (quote) => quote.author === author
