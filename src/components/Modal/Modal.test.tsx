@@ -101,23 +101,6 @@ describe("Given a modal", () => {
     expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
   });
 
-  describe("And when the isOpen property of UIData store branch is false", () => {
-    test("Then the modal shouldn't be in the document", () => {
-      const errorMessage = screen.queryByText("Error ꭗ");
-      const successMessage = screen.queryByText("Success ✓");
-
-      render(
-        <WrapperRealStore>
-          <Modal />
-        </WrapperRealStore>
-      );
-
-      expect(mockedDispatch).not.toHaveBeenCalled();
-      expect(errorMessage).not.toBeInTheDocument();
-      expect(successMessage).not.toBeInTheDocument();
-    });
-  });
-
   describe("And when the user clicks on the close button", () => {
     test("Then the dispatch should be called ith an action to close the modal", async () => {
       render(
@@ -130,6 +113,30 @@ describe("Given a modal", () => {
       await fireEvent.click(closeButton);
 
       expect(mockedDispatch).toHaveBeenCalledWith(closeModalActionCreator());
+    });
+  });
+
+  describe("And when the isOpen property of UIData store branch is false", () => {
+    test("Then the modal shouldn't be in the document", () => {
+      mockedUseSelector = {
+        modal: {
+          isError: false,
+          isOpen: false,
+          message: "no message",
+        },
+      };
+      const errorMessage = screen.queryByText("Error ꭗ");
+      const successMessage = screen.queryByText("Success ✓");
+
+      render(
+        <WrapperRealStore>
+          <Modal />
+        </WrapperRealStore>
+      );
+
+      expect(mockedDispatch).not.toHaveBeenCalled();
+      expect(errorMessage).not.toBeInTheDocument();
+      expect(successMessage).not.toBeInTheDocument();
     });
   });
 });
