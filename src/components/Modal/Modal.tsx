@@ -37,8 +37,6 @@ const Modal = (): JSX.Element => {
           <span className="modal__description">{message}</span>
         </ModalStyled>
       )}
-
-      {!isOpen && <></>}
     </>
   );
 };
